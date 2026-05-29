@@ -4,5 +4,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="tryout"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JAZKernelBase"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JAZKernelCore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JAZKernelEngine"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

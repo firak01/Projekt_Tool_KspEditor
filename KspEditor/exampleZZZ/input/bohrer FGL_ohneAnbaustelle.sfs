@@ -1,0 +1,2418 @@
+			# START FGL AUSKLAPPBAHRER BOHRER
+			PART
+			{
+				name = IR.Pivotron.Basic.v3
+				cid = 4156669852
+				uid = 1513501019
+				mid = 2693559344
+				persistentId = 1769033869
+				launchID = 144
+				parent = 453
+				position = -0.0025701390113681555,42.337135314941406,1.4081394672393799
+				rotation = -0.999999881,3.6827103E-05,0.000591213524,0.000284764101
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = top, 455
+				attN = bottom, 453
+				mass = 0.100000001
+				shielded = False
+				temp = 257.44530418960886
+				tempExt = 258.01505613123368
+				tempExtUnexp = 258.01502313663912
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Pivotron.Basic.v3
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleIRServo_v3
+					isEnabled = True
+					swap = False
+					commandedPosition = 0
+					correction_0 = 0
+					correction_1 = 90
+					activateCollisions = False
+					presetsS = -90|0|90|
+					servoName = Joint Pivotron - Basic
+					groupName = FDrill ausklapp
+					isLocked = False
+					lockPosition = 0
+					mode = servo
+					modeIndex = 0
+					isInverted = False
+					zeroNormal = 0
+					zeroInvert = 0
+					defaultPosition = 90
+					hasPositionLimit = False
+					minPositionLimit = -90
+					maxPositionLimit = 90
+					forceLimit = 30
+					accelerationLimit = 4
+					speedLimit = 1
+					jointSpring = 1.00000002E+20
+					jointDamping = 0
+					baseSpeed = 0
+					pitchSpeed = 0
+					rollSpeed = 0
+					yawSpeed = 0
+					throttleSpeed = 0
+					xSpeed = 0
+					ySpeed = 0
+					zSpeed = 0
+					rotorAcceleration = 4
+					isRunning = 0
+					controlDeflectionRange = 0
+					controlNeutralPosition = 0
+					pitchControl = 0
+					rollControl = 0
+					yawControl = 0
+					throttleControl = 0
+					xControl = 0
+					yControl = 0
+					zControl = 0
+					hasSpring = False
+					forwardKey = 
+					reverseKey = 
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						LockToggleAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MovePrevPresetAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveNextPresetAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveMinusAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveCenterAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MovePlusAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MotorToggleAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 100
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669806
+				uid = 515160656
+				mid = 2693559344
+				persistentId = 2768426199
+				launchID = 144
+				parent = 454
+				position = -0.002775177825242281,39.536594390869141,1.4063961505889893
+				rotation = -0.000284755981,-0.000591133256,3.66918066E-05,-0.999999821
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, -1
+				attN = top, 454
+				mass = 0.319999993
+				shielded = False
+				temp = 257.43526986387269
+				tempExt = 258.01186056931283
+				tempExtUnexp = 258.01182144984148
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669764
+				uid = 455206729
+				mid = 2693559344
+				persistentId = 3269821690
+				launchID = 144
+				parent = 455
+				position = -0.0031432942487299442,34.535594940185547,1.4032614231109619
+				rotation = 0.999999821,-3.67489156E-05,-0.000591119868,-0.000284607289
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 455
+				attN = bottom, -1
+				attN = top, -1
+				mass = 0.319999993
+				shielded = False
+				temp = 257.41634518778574
+				tempExt = 258.00658904671837
+				tempExtUnexp = 258.00654832574412
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669722
+				uid = 3649992860
+				mid = 2693559344
+				persistentId = 828029702
+				launchID = 144
+				parent = 456
+				position = 0.010976734571158886,29.534027099609375,1.4068853855133057
+				rotation = 0.999999821,-3.67489156E-05,-0.000591119868,-0.000284607289
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 456
+				attN = bottom, -1
+				attN = top, -1
+				mass = 0.319999993
+				shielded = False
+				temp = 257.40162068696645
+				tempExt = 258.00199043795072
+				tempExtUnexp = 258.00194939872722
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669680
+				uid = 4140463910
+				mid = 2693559344
+				persistentId = 2934182959
+				launchID = 144
+				parent = 457
+				position = 0.016197120770812035,24.53375244140625,1.4241029024124146
+				rotation = 0.999999821,-3.67489156E-05,-0.000591119868,-0.000284607289
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 457
+				attN = bottom, -1
+				attN = top, 459
+				mass = 0.319999993
+				shielded = False
+				temp = 257.38755048846417
+				tempExt = 257.997954370076
+				tempExtUnexp = 257.99791444478899
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Pivotron.Hinge.Basic.v3
+				cid = 4156669638
+				uid = 922130225
+				mid = 2693559344
+				persistentId = 3378670800
+				launchID = 144
+				parent = 458
+				position = 0.016346845775842667,21.733249664306641,1.7224099636077881
+				rotation = 0.999999881,-3.67505963E-05,-0.000591149263,-0.000285348564
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = top, 458
+				attN = bottom, -1
+				mass = 0.150000006
+				shielded = False
+				temp = 257.36934112532481
+				tempExt = 257.99413929595136
+				tempExtUnexp = 257.99410098558928
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Pivotron.Hinge.Basic.v3
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleIRServo_v3
+					isEnabled = True
+					swap = True
+					commandedPosition = 0
+					correction_0 = 180
+					correction_1 = 0
+					activateCollisions = False
+					presetsS = 0|90|180|
+					servoName = Hinge Pivotron - Basic
+					groupName = FDrill ausklapp
+					isLocked = False
+					lockPosition = 0
+					mode = servo
+					modeIndex = 0
+					isInverted = False
+					zeroNormal = 0
+					zeroInvert = 180
+					defaultPosition = 180
+					hasPositionLimit = False
+					minPositionLimit = 0
+					maxPositionLimit = 180
+					forceLimit = 30
+					accelerationLimit = 4
+					speedLimit = 1
+					jointSpring = 1.00000002E+20
+					jointDamping = 0
+					baseSpeed = 0
+					pitchSpeed = 0
+					rollSpeed = 0
+					yawSpeed = 0
+					throttleSpeed = 0
+					xSpeed = 0
+					ySpeed = 0
+					zSpeed = 0
+					rotorAcceleration = 4
+					isRunning = 0
+					controlDeflectionRange = 0
+					controlNeutralPosition = 0
+					pitchControl = 0
+					rollControl = 0
+					yawControl = 0
+					throttleControl = 0
+					xControl = 0
+					yControl = 0
+					zControl = 0
+					hasSpring = False
+					forwardKey = 
+					reverseKey = 
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						LockToggleAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MovePrevPresetAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveNextPresetAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveMinusAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveCenterAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MovePlusAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MotorToggleAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 100
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669592
+				uid = 979971317
+				mid = 2693559344
+				persistentId = 4089954754
+				launchID = 144
+				parent = 459
+				position = 0.028797000646591187,24.533370971679688,2.0318262577056885
+				rotation = -0.000285632093,-0.000591108052,3.66941458E-05,-0.999999821
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 459
+				attN = bottom, -1
+				attN = top, 461
+				mass = 0.319999993
+				shielded = False
+				temp = 257.38716174492396
+				tempExt = 257.99743917545106
+				tempExtUnexp = 257.99739869648022
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669550
+				uid = 4064107370
+				mid = 2693559344
+				persistentId = 567717955
+				launchID = 144
+				parent = 460
+				position = 0.02916511707007885,29.53428840637207,2.0349733829498291
+				rotation = -0.000285632093,-0.000591108052,3.66941458E-05,-0.999999821
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, 460
+				attN = top, 462
+				mass = 0.319999993
+				shielded = False
+				temp = 257.38825915654701
+				tempExt = 257.99792308572154
+				tempExtUnexp = 257.99788225262222
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669508
+				uid = 3516312424
+				mid = 2693559344
+				persistentId = 2040371497
+				launchID = 144
+				parent = 461
+				position = 0.029538001865148544,34.536144256591797,2.0384581089019775
+				rotation = -0.000285632093,-0.000591108052,3.66941458E-05,-0.999999821
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, 461
+				attN = top, 463
+				mass = 0.319999993
+				shielded = False
+				temp = 257.39193789373985
+				tempExt = 257.99902492287589
+				tempExtUnexp = 257.99898423251062
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669466
+				uid = 3450201400
+				mid = 2693559344
+				persistentId = 654821540
+				launchID = 144
+				parent = 462
+				position = 0.029904210940003395,39.537105560302734,2.0416576862335205
+				rotation = -0.000591497927,0.000286539376,-0.999999821,-3.63304316E-05
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, 464
+				attN = top, 462
+				mass = 0.319999993
+				shielded = False
+				temp = 257.39772744646137
+				tempExt = 258.00071587570653
+				tempExtUnexp = 258.00067589076986
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Pivotron.Hinge.Basic.v3
+				cid = 4156669424
+				uid = 1306802923
+				mid = 2693559344
+				persistentId = 66464623
+				launchID = 144
+				parent = 463
+				position = 0.030463060364127159,42.337181091308594,2.3434045314788818
+				rotation = -0.999999821,3.62725623E-05,0.000591346819,0.000286134891
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = top, -1
+				attN = bottom, 463
+				mass = 0.150000006
+				shielded = False
+				temp = 257.38785653702774
+				tempExt = 258.00273726968652
+				tempExtUnexp = 258.00270061020404
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Pivotron.Hinge.Basic.v3
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = ModuleIRServo_v3
+					isEnabled = True
+					swap = False
+					commandedPosition = 0
+					correction_0 = 0
+					correction_1 = 180
+					activateCollisions = False
+					presetsS = 0|90|180|
+					servoName = Hinge Pivotron - Basic
+					groupName = FDrill ausklapp
+					isLocked = False
+					lockPosition = 0
+					mode = servo
+					modeIndex = 0
+					isInverted = False
+					zeroNormal = 0
+					zeroInvert = 180
+					defaultPosition = 180
+					hasPositionLimit = False
+					minPositionLimit = 0
+					maxPositionLimit = 180
+					forceLimit = 30
+					accelerationLimit = 4
+					speedLimit = 1
+					jointSpring = 1.00000002E+20
+					jointDamping = 0
+					baseSpeed = 0
+					pitchSpeed = 0
+					rollSpeed = 0
+					yawSpeed = 0
+					throttleSpeed = 0
+					xSpeed = 0
+					ySpeed = 0
+					zSpeed = 0
+					rotorAcceleration = 4
+					isRunning = 0
+					controlDeflectionRange = 0
+					controlNeutralPosition = 0
+					pitchControl = 0
+					rollControl = 0
+					yawControl = 0
+					throttleControl = 0
+					xControl = 0
+					yControl = 0
+					zControl = 0
+					hasSpring = False
+					forwardKey = 
+					reverseKey = 
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						LockToggleAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MovePrevPresetAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveNextPresetAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveMinusAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MoveCenterAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MovePlusAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						MotorToggleAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 100
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669378
+				uid = 467685892
+				mid = 2693559344
+				persistentId = 3038584577
+				launchID = 144
+				parent = 464
+				position = 0.042592782527208328,39.536750793457031,2.697514533996582
+				rotation = -0.999999821,3.62725623E-05,0.000591346819,0.000286134891
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 464
+				attN = bottom, -1
+				attN = top, 466
+				mass = 0.319999993
+				shielded = False
+				temp = 257.42486106236453
+				tempExt = 258.01125657451348
+				tempExtUnexp = 258.01121737626812
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669336
+				uid = 1815093026
+				mid = 2693559344
+				persistentId = 1820624845
+				launchID = 144
+				parent = 465
+				position = 0.042227525264024734,34.535308837890625,2.694218635559082
+				rotation = -0.00028697672,-0.000591340824,3.60680751E-05,-0.999999821
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, 467
+				attN = top, 465
+				mass = 0.319999993
+				shielded = False
+				temp = 257.44078392392572
+				tempExt = 258.01638817744629
+				tempExtUnexp = 258.0163489589284
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669294
+				uid = 1657110385
+				mid = 2693559344
+				persistentId = 531361437
+				launchID = 144
+				parent = 466
+				position = 0.041864179074764252,29.533363342285156,2.6907939910888672
+				rotation = -0.000286630995,-0.000591364689,3.60340491E-05,-0.999999881
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, 468
+				attN = top, 466
+				mass = 0.319999993
+				shielded = False
+				temp = 257.45545356308185
+				tempExt = 258.02073547950511
+				tempExtUnexp = 258.02069682890897
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = IR.Segment.TrussLarge.5m00
+				cid = 4156669252
+				uid = 2426639654
+				mid = 2693559344
+				persistentId = 1298341905
+				launchID = 144
+				parent = 467
+				position = 0.04150082916021347,24.533151626586914,2.6878070831298828
+				rotation = 0.00028627718,0.0005911474,-3.60997037E-05,0.999999821
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = bottom, 469
+				attN = top, 467
+				mass = 0.319999993
+				shielded = False
+				temp = 257.46618345231559
+				tempExt = 258.02316096458458
+				tempExtUnexp = 258.02312360772231
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = IR.Segment.TrussLarge.5m00
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 1200
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = structuralIBeam2
+				cid = 4156669210
+				uid = 3395958459
+				mid = 2693559344
+				persistentId = 1348291581
+				launchID = 144
+				parent = 468
+				position = 0.041203286498785019,20.43394660949707,2.6852102279663086
+				rotation = -3.61344973E-05,-0.999999881,-0.000286373543,0.000591198739
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 0
+				srfN = srfAttach, -1
+				attN = top, 468
+				attN = bottom, -1
+				mass = 0.375
+				shielded = False
+				temp = 257.42351039425336
+				tempExt = 258.0128605931601
+				tempExtUnexp = 258.01283746579583
+				expt = 0.5
+				state = 0
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = structuralIBeam2
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 500
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = kethane.smallDrill
+				cid = 4156669180
+				uid = 1387982767
+				mid = 2693559344
+				persistentId = 3128979214
+				launchID = 144
+				parent = 469
+				position = 0.11638151854276657,19.338066101074219,2.5405137538909912
+				rotation = -0.000176560876,0.706688106,0.000228655117,-0.707525194
+				mirror = 1,1,1
+				symMethod = Mirror
+				istg = -1
+				resPri = 0
+				dstg = 0
+				sqor = -1
+				sepI = 1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 469
+				mass = 1
+				shielded = False
+				temp = 257.41311859518009
+				tempExt = 258.00859641141238
+				tempExtUnexp = 258.00857690244936
+				expt = 0.5
+				state = 1
+				PreFailState = 0
+				attached = True
+				autostrutMode = Off
+				rigidAttachment = False
+				flag = Squad/Flags/FGL_Warrior4Ksp
+				rTrf = kethane.smallDrill
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				PARTDATA
+				{
+				}
+				MODULE
+				{
+					name = KethaneExtractor
+					isEnabled = True
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						DeployDrillAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						RetractDrillAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+						ToggleDrillAction
+						{
+							actionGroup = None
+							wasActiveBeforePartWasAdjusted = False
+						}
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = KethaneDrillAnimator
+					isEnabled = True
+					State = Retracted
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = KethaneParticleEmitter
+					isEnabled = True
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = KethaneParticleDynamics
+					isEnabled = True
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = KethaneParticleEmitter
+					isEnabled = True
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = KethaneParticleDynamics
+					isEnabled = True
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = HitpointTracker
+					isEnabled = True
+					Hitpoints = 954400
+					Armor = 10
+					maxHitPoints = 0
+					ArmorThickness = 0
+					ArmorSet = True
+					ExplodeMode = Never
+					FireFX = True
+					FireFXLifeTimeInSeconds = 5
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = FMRS_PM
+					isEnabled = True
+					stagingEnabled = True
+					MM_DYNAMIC = true
+					parent_vessel = 00000000-0000-0000-0000-000000000000
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleWaterLogged
+					isEnabled = True
+					SubmergedAmount = 0
+					RBDrag = 0
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleB9PropagateCopyEvents
+					isEnabled = False
+					stagingEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					UPGRADESAPPLIED
+					{
+					}
+				}
+			}
+			# ENDE Ausklappbarer Bohrer FGL
+	
