@@ -15,10 +15,10 @@ public class VesselIdentity {
         this.sPid = sPid;
     }
 
-    public void setPersistenceId(String sPersitanceId) {
+    public void setPersistentId(String sPersitanceId) {
         this.sPersistenceId = sPersitanceId;
     }
-    public String getPersistenceId() {
+    public String getPersistenId() {
         return this.sPersistenceId;
     }
    

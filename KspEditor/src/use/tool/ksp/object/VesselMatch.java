@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import use.tool.ksp.util.VesselIdentity;
+
 public class VesselMatch {
 
+	private VesselIdentity vesselIdentity;
     private String vesselName;
 
     private int vesselStartLine;
@@ -19,7 +22,32 @@ public class VesselMatch {
     public VesselMatch() {
 
     }
-
+    
+    public VesselIdentity getVesselIdentityObject() {
+    	if( this.vesselIdentity == null) {
+    		this.vesselIdentity = new VesselIdentity();
+    	}
+    	return this.vesselIdentity;
+    }
+    public void setVesselIdentityObject(VesselIdentity objVesselIdentity) {
+    	this.vesselIdentity = objVesselIdentity;
+    }
+    
+    public String getVesselPID() {
+    	return this.getVesselIdentityObject().getPId();
+    }
+    public void setVesselPID(String sPID) {
+    	this.getVesselIdentityObject().setPID(sPID);
+    }
+    
+    public String getVesselPersistenId() {
+    	return this.getVesselIdentityObject().getPersistenId();
+    }
+    public void setVesselPersistentId(String sPersistentId) {
+    	this.getVesselIdentityObject().setPersistentId(sPersistentId);
+    }
+    
+    //+++++++++++++++++++++++++++++++++++++++++++
     public String getVesselName() {
         return vesselName;
     }
@@ -28,6 +56,7 @@ public class VesselMatch {
         this.vesselName = vesselName;
     }
 
+    //+++++++++++++++++++++++++++++++++++++++++++
     public int getVesselStartLine() {
         return vesselStartLine;
     }

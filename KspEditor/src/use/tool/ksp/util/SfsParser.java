@@ -180,6 +180,27 @@ public class SfsParser {
 				    }
 				}
 				
+				//Merke: Reihenfolge entspricht der Reihenfolge in der VESSEL Struktur
+				
+				// --------------------------
+				// Vessel Identity (ROOT ONLY!)
+				// --------------------------
+				if (!inPart && t.startsWith("pid = ")) {				
+					if (StringZZZ.isEmptyTrimmed(current.getVesselPID())) {				
+						current.setVesselPID(
+								t.substring("pid = ".length()).trim()
+						);
+					}
+				}
+				
+				if (!inPart && t.startsWith("persistentId = ")) {				
+					if (StringZZZ.isEmptyTrimmed(current.getVesselPersistenId())) {				
+						current.setVesselPersistentId(
+								t.substring("persistentId = ".length()).trim()
+						);
+					}
+				}
+				
 				// --------------------------
 				// Vessel Name (ROOT ONLY!)
 				// --------------------------
@@ -190,6 +211,7 @@ public class SfsParser {
 						);
 					}
 				}
+				
 				
 				// --------------------------
 				// END VESSEL
