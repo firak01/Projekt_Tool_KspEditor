@@ -22,17 +22,17 @@ public class VesselFinderMain {
 	        	System.out.println("Start, verwende Argumente:");        	
 	        }
 			
-			  String sFilePath = args[0]; //D:\\KSP\\persistent_partstruktur.sfs
-			  System.out.println(sFilePath);
-			  File saveFile = new File(sFilePath);
+			  String sFilePathGame = args[0]; 
+			  System.out.println(sFilePathGame);
+			  File fileGame = new File(sFilePathGame);
 			  
 
-			  String vesselName = args[1]; //"Float Raff 01experiment";
+			  String vesselName = args[1]; 
 			  System.out.println(vesselName);
 			  
 			  VesselMatch vessel =
 					  VesselFinderTool.findSingleVesselByName(
-                        saveFile,
+                        fileGame,
                         vesselName);
 
 			  System.out.println(

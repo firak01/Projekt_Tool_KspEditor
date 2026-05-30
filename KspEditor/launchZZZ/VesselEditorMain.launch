@@ -7,6 +7,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="use.tool.ksp.VesselEditorMain"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\input\20260522experiment02 - a - Neues Teil an das Ende der PARTS - enthaelt noch Kommentare.sfs&quot; &quot;Float Raff 01experiment&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\input\20260522experiment02 - a - Neues Teil an das Ende der PARTS - enthaelt noch Kommentare.sfs&quot; &#13;&#10;&quot;Float Raff 01experiment&quot;&#13;&#10;&quot;C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\input\bohrer FGL_ohneAnbaustelle.sfs&quot;"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Projekt_Tool_KspEditor"/>
 </launchConfiguration>

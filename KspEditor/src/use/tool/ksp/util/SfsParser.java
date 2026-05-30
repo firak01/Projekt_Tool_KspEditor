@@ -29,7 +29,7 @@ durch:
 👉 Zustandsmaschine + Brace Tracking
  * 
  * 
- * @author Fritz Lindhauer
+ * @author Fritz Lindhauer (featuring ChatGpt)
  *
  */
 public class SfsParser {
