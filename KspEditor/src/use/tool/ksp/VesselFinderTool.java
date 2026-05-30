@@ -1,4 +1,4 @@
-package use.tool.ksp.util;
+package use.tool.ksp;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,8 +11,9 @@ import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 import use.tool.ksp.object.FlightStateMatch;
 import use.tool.ksp.object.VesselMatch;
+import use.tool.ksp.util.SfsParser;
 
-public class VesselFinder {
+public class VesselFinderTool extends AbstractVesselTool{
 
     /**
      * Findet den kompletten FLIGHTSTATE Block.
@@ -140,6 +141,10 @@ public class VesselFinder {
 //    }
     
     
+	protected VesselFinderTool(SfsParser parser) {
+		super(parser);
+	}
+
 	/**
 	 * Findet genau EIN Vessel über den Namen.
 	 * @throws ExceptionZZZ 

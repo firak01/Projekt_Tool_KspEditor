@@ -2,8 +2,6 @@ package use.tool.ksp;
 
 import java.io.File;
 
-import use.tool.ksp.util.StructureEditor;
-
 public class StruktureEditorMain {
 	public static void main(String[] args) {
 		try {
@@ -32,7 +30,7 @@ public class StruktureEditorMain {
           // Zweiter PART bekommt parent = 2000
           // Dritter PART bekommt parent = 2001
           // Vierter PART bekommt parent = 2002
-		  StructureEditor.updateParentValues(
+		  StructureEditorTool.updateParentValues(
                   objFileIn,
                   iIndexAufhaenger,
                   iIndexStrukturStart,

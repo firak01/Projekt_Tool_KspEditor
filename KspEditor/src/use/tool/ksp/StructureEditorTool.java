@@ -1,4 +1,4 @@
-package use.tool.ksp.util;
+package use.tool.ksp;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * Java 1.7 kompatibel
  */
-public class StructureEditor {
+public class StructureEditorTool {
 
    
     /**
