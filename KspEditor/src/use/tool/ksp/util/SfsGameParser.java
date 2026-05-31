@@ -25,12 +25,12 @@ public class SfsGameParser extends AbstractSfsParser{
 	}
 	
 	
-	public FlightStateMatch parse() throws IOException, ExceptionZZZ{
+	public FlightstateMatch parse() throws IOException, ExceptionZZZ{
 		File objFile = this.getFile();
 		return SfsGameParser.parse(objFile);
 	}
 	
-    public static FlightStateMatch parse(File saveFile) throws IOException {
+    public static FlightstateMatch parse(File saveFile) throws IOException {
 
         BufferedReader br =
                 new BufferedReader(new FileReader(saveFile));
@@ -51,9 +51,9 @@ public class SfsGameParser extends AbstractSfsParser{
      * @param lines
      * @return
      */
-    private static FlightStateMatch parseFlightState(List<String> lines) {
+    private static FlightstateMatch parseFlightState(List<String> lines) {
 
-        FlightStateMatch fs = null;
+        FlightstateMatch fs = null;
 
         ParseState state = ParseState.OUTSIDE;
 
@@ -69,7 +69,7 @@ public class SfsGameParser extends AbstractSfsParser{
             if (state == ParseState.OUTSIDE) {
 
                 if ("FLIGHTSTATE".equals(t)) {
-                	fs = new FlightStateMatch();
+                	fs = new FlightstateMatch();
                 	fs.setStartLine(i);
                 	brace = 0;
                     state = ParseState.IN_FLIGHTSTATE;
@@ -107,7 +107,7 @@ public class SfsGameParser extends AbstractSfsParser{
      * @return
      * @throws ExceptionZZZ 
      */
-    public static List<VesselMatch> parseVessels(FlightStateMatch fs) throws ExceptionZZZ {
+    public static List<VesselMatch> parseVessels(FlightstateMatch fs) throws ExceptionZZZ {
 		
 		List<VesselMatch> result = new ArrayList<VesselMatch>();
 		
@@ -122,6 +122,8 @@ public class SfsGameParser extends AbstractSfsParser{
 		boolean inFlightStateRoot = true;
 		boolean inPart = false;
 		
+		int iFlightStateStartLine = fs.getStartLine();
+		
 		for (int i = 0; i < lines.size(); i++) {
 			
 			String raw = lines.get(i);
@@ -135,7 +137,8 @@ public class SfsGameParser extends AbstractSfsParser{
 				if (isRealVesselStart(lines, i)) {
 				
 					current = new VesselMatch();
-					current.setVesselStartLine(i);
+					current.setVesselStartLine_inFlightstate(i);
+					current.setVesselStartLine_inFile(i+iFlightStateStartLine);
 					
 					state = ParseState.IN_VESSEL;
 					brace = 1;
@@ -208,7 +211,7 @@ public class SfsGameParser extends AbstractSfsParser{
 				if (brace == 0) {
 					//System.out.println("wirklich am VESSEL ende?");
 					
-					current.setVesselEndLine(i);
+					current.setVesselEndLine_inFlightstate(i);
 					
 					result.add(current);
 					
@@ -219,7 +222,8 @@ public class SfsGameParser extends AbstractSfsParser{
 					if(!StringZZZ.isEmpty(current.getVesselName())) {
 						//System.out.println("wirklich kurz vor VESSEL ende?");
 						
-						current.setVesselEndLine(i);						
+						current.setVesselEndLine_inFlightstate(i);	
+						current.setVesselEndLine_inFile(i+iFlightStateStartLine);
 						result.add(current);
 
 						// RESETTE ERST JETZT !!!

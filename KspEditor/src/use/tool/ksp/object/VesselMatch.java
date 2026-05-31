@@ -14,9 +14,12 @@ public class VesselMatch {
 	private VesselIdentity vesselIdentity;
     private String vesselName;
 
-    private int vesselStartLine;
-    private int vesselEndLine;
+    private int vesselStartLine_inFlightstate;
+    private int vesselEndLine_inFlightstate;
 
+    private int vesselStartLine_inFile;
+    private int vesselEndLine_inFile;
+    
     private List<String> vesselLines = new ArrayList<String>();
 
     public VesselMatch() {
@@ -57,21 +60,41 @@ public class VesselMatch {
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++
-    public int getVesselStartLine() {
-        return vesselStartLine;
+    public int getVesselStartLine_inFlightstate() {
+        return vesselStartLine_inFlightstate;
     }
 
-    public void setVesselStartLine(int vesselStartLine) {
-        this.vesselStartLine = vesselStartLine;
+    public void setVesselStartLine_inFlightstate(int vesselStartLine) {
+        this.vesselStartLine_inFlightstate = vesselStartLine;
     }
 
-    public int getVesselEndLine() {
-        return vesselEndLine;
+    public int getVesselEndLine_inFlightstate() {
+        return vesselEndLine_inFlightstate;
     }
 
-    public void setVesselEndLine(int vesselEndLine) {
-        this.vesselEndLine = vesselEndLine;
+    public void setVesselEndLine_inFlightstate(int vesselEndLine) {
+       this.vesselEndLine_inFlightstate = vesselEndLine;
     }
+    
+    //++++++++++++++++++++++++++++++++++++++++++
+    public int getVesselStartLine_inFile() {
+        return vesselStartLine_inFile;
+    }
+
+    public void setVesselStartLine_inFile(int vesselStartLine) {
+        this.vesselStartLine_inFile = vesselStartLine;
+    }
+
+    public int getVesselEndLine_inFile() {
+        return vesselEndLine_inFile;
+    }
+
+    public void setVesselEndLine_inFile(int vesselEndLine) {
+
+       this.vesselEndLine_inFile = vesselEndLine;
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++
 
     public List<String> getVesselLines() {
         return vesselLines;

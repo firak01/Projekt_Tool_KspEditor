@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import basic.zBasic.ExceptionZZZ;
-import use.tool.ksp.object.FlightStateMatch;
+import use.tool.ksp.object.FlightstateMatch;
 import use.tool.ksp.object.VesselMatch;
 import use.tool.ksp.util.SfsGameParser;
 import use.tool.ksp.util.SfsVesselParser;

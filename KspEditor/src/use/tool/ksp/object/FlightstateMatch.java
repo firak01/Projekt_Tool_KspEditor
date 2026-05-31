@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlightStateMatch {
+public class FlightstateMatch {
 
     private int startLine;
 
@@ -16,7 +16,7 @@ public class FlightStateMatch {
     private List<String> lines =
             new ArrayList<String>();
 
-    public FlightStateMatch() {
+    public FlightstateMatch() {
 
     }
 
@@ -75,7 +75,7 @@ public class FlightStateMatch {
         }
 
         System.out.println(
-                "DEBUG FlightState geschrieben: "
+                "DEBUG Flightstate geschrieben: "
                         + outFile.getAbsolutePath());
     }
 }

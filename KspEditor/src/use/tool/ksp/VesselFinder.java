@@ -9,7 +9,7 @@ import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
-import use.tool.ksp.object.FlightStateMatch;
+import use.tool.ksp.object.FlightstateMatch;
 import use.tool.ksp.object.VesselMatch;
 import use.tool.ksp.util.SfsGameParser;
 
@@ -29,7 +29,7 @@ public class VesselFinder extends AbstractVesselTool{
             throws IOException, ExceptionZZZ {
     	VesselMatch objReturn = null;
     	main:{
-	        FlightStateMatch fs = objParser.parse();
+	        FlightstateMatch fs = objParser.parse();
 	        objReturn = findFirstVesselByName(fs, targetVesselName);
     	}//end main:
         return objReturn;
@@ -43,7 +43,7 @@ public class VesselFinder extends AbstractVesselTool{
             throws IOException, ExceptionZZZ {
     	VesselMatch objReturn = null;
     	main:{
-	        FlightStateMatch fs = SfsGameParser.parse(file);
+	        FlightstateMatch fs = SfsGameParser.parse(file);
 	        objReturn = findFirstVesselByName(fs, targetVesselName);
     	}//end main:
         return objReturn;
@@ -57,7 +57,7 @@ public class VesselFinder extends AbstractVesselTool{
             throws IOException, ExceptionZZZ {
     	VesselMatch objReturn = null;
     	main:{
-	        FlightStateMatch fs = SfsGameParser.parse(file);
+	        FlightstateMatch fs = SfsGameParser.parse(file);
 	        objReturn = findSingleVesselByName(fs,targetVesselName) ;
     	}//end main:
         return objReturn;
@@ -67,7 +67,7 @@ public class VesselFinder extends AbstractVesselTool{
    	 * Findet genau EIN Vessel über den Namen.
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findSingleVesselByName(FlightStateMatch fs,String targetVesselName)
+       public static VesselMatch findSingleVesselByName(FlightstateMatch fs,String targetVesselName)
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{       	
@@ -92,7 +92,7 @@ public class VesselFinder extends AbstractVesselTool{
    	 * Findet genau EIN Vessel über den Namen.
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findFirstVesselByName(FlightStateMatch fs, String targetVesselName)
+       public static VesselMatch findFirstVesselByName(FlightstateMatch fs, String targetVesselName)
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{       	
@@ -119,7 +119,7 @@ public class VesselFinder extends AbstractVesselTool{
              throws IOException, ExceptionZZZ {
      	VesselMatch objReturn = null;
      	main:{
- 	        FlightStateMatch fs = objParser.parse();
+ 	        FlightstateMatch fs = objParser.parse();
  	        objReturn = findFirstVesselByPersistentId(fs, targetVesselPersistentId); 	       
      	}//end main:
          return objReturn;
@@ -133,7 +133,7 @@ public class VesselFinder extends AbstractVesselTool{
             throws IOException, ExceptionZZZ {
     	VesselMatch objReturn = null;
     	main:{    	
-	        FlightStateMatch fs = SfsGameParser.parse(file);
+	        FlightstateMatch fs = SfsGameParser.parse(file);
 	        objReturn = findFirstVesselByPersistentId(fs, targetVesselPersistentId); 
     	}//end main:
         return objReturn;
@@ -147,14 +147,14 @@ public class VesselFinder extends AbstractVesselTool{
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{       	
-   	        FlightStateMatch fs = SfsGameParser.parse(file);
+   	        FlightstateMatch fs = SfsGameParser.parse(file);
    	        objReturn = findSingleVesselByPersistentId(fs, targetVesselPersistentId);
        	}//end main:
            return objReturn;
        }
        
        
-       public static VesselMatch findSingleVesselByPersistentId(FlightStateMatch fs, String targetVesselPersistentId)
+       public static VesselMatch findSingleVesselByPersistentId(FlightstateMatch fs, String targetVesselPersistentId)
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{
@@ -175,7 +175,7 @@ public class VesselFinder extends AbstractVesselTool{
            return objReturn;
        }
        
-       public static VesselMatch findFirstVesselByPersistentId(FlightStateMatch fs, String targetVesselPersistentId)
+       public static VesselMatch findFirstVesselByPersistentId(FlightstateMatch fs, String targetVesselPersistentId)
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{
@@ -203,7 +203,7 @@ public class VesselFinder extends AbstractVesselTool{
               throws IOException, ExceptionZZZ {
       	VesselMatch objReturn = null;
       	main:{      	
-  	        FlightStateMatch fs = objParser.parse();
+  	        FlightstateMatch fs = objParser.parse();
   	        objReturn = findFirstVesselByPid(fs, targetVesselPid);  	       
       	}//end main:
           return objReturn;
@@ -217,7 +217,7 @@ public class VesselFinder extends AbstractVesselTool{
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{       	
-   	        FlightStateMatch fs = SfsGameParser.parse(file);
+   	        FlightstateMatch fs = SfsGameParser.parse(file);
    	        objReturn = findFirstVesselByPid(fs, targetVesselPid);
        	}//end main:
            return objReturn;
@@ -231,7 +231,7 @@ public class VesselFinder extends AbstractVesselTool{
               throws IOException, ExceptionZZZ {
       	VesselMatch objReturn = null;
       	main:{      	
-  	        FlightStateMatch fs = SfsGameParser.parse(file);
+  	        FlightstateMatch fs = SfsGameParser.parse(file);
   	        objReturn = findSingleVesselByPid(fs, targetVesselPid);
       	}//end main:
           return objReturn;
@@ -241,7 +241,7 @@ public class VesselFinder extends AbstractVesselTool{
  	 * Findet genau EIN Vessel über die Pid.
  	 * @throws ExceptionZZZ 
  	 */
-     public static VesselMatch findFirstVesselByPid(FlightStateMatch fs, String targetVesselPid)
+     public static VesselMatch findFirstVesselByPid(FlightstateMatch fs, String targetVesselPid)
              throws IOException, ExceptionZZZ {
      	VesselMatch objReturn = null;
      	main:{         	
@@ -260,7 +260,7 @@ public class VesselFinder extends AbstractVesselTool{
    	 * Findet genau EIN Vessel über die Pid
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findSingleVesselByPid(FlightStateMatch fs, String targetVesselPid)
+       public static VesselMatch findSingleVesselByPid(FlightstateMatch fs, String targetVesselPid)
                throws IOException, ExceptionZZZ {
        	VesselMatch objReturn = null;
        	main:{       	
@@ -291,7 +291,7 @@ public class VesselFinder extends AbstractVesselTool{
             String targetVesselName)
             throws IOException, ExceptionZZZ {
 
-        FlightStateMatch flightState =
+        FlightstateMatch flightState =
                 SfsGameParser.parse(saveFile);
 
         List<VesselMatch> allVessels =

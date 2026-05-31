@@ -9,7 +9,7 @@ import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
-import use.tool.ksp.object.FlightStateMatch;
+import use.tool.ksp.object.FlightstateMatch;
 import use.tool.ksp.object.VesselMatch;
 import use.tool.ksp.util.ISfsParser.ParseState;
 
@@ -52,7 +52,6 @@ public class SfsVesselParser extends AbstractSfsParser{
 		int brace = 0;
 		int partBrace = 0;
 		
-		boolean inFlightStateRoot = true;
 		boolean inPart = false;
 		
 		for (int i = 0; i < lines.size(); i++) {
@@ -68,7 +67,7 @@ public class SfsVesselParser extends AbstractSfsParser{
 				if (isRealVesselStart(lines, i)) {
 				
 					objReturn = new VesselMatch();
-					objReturn.setVesselStartLine(i);
+					objReturn.setVesselStartLine_inFile(i);
 					
 					state = ParseState.IN_VESSEL;
 					brace = 1;
@@ -141,7 +140,7 @@ public class SfsVesselParser extends AbstractSfsParser{
 				if (brace == 0) {
 					//System.out.println("wirklich am VESSEL ende?");
 					
-					objReturn.setVesselEndLine(i);
+					objReturn.setVesselEndLine_inFile(i);
 					
 					//result.add(current);
 					
@@ -151,7 +150,7 @@ public class SfsVesselParser extends AbstractSfsParser{
 					if(!StringZZZ.isEmpty(objReturn.getVesselName())) {
 						//System.out.println("wirklich kurz vor VESSEL ende?");
 						
-						objReturn.setVesselEndLine(i);						
+						objReturn.setVesselEndLine_inFlightstate(i);						
 						//result.add(current);
 
 						// RESETTE ERST JETZT !!!
