@@ -7,33 +7,29 @@ import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 import use.tool.ksp.object.*;
 
-enum ParseState {
-    OUTSIDE,
-    IN_FLIGHTSTATE,
-    IN_VESSEL,
-    IN_PART,
-    IN_MODULE,
-    IN_ACTIONGROUPS
-}
 
-/**Grundidee: State Machine statt String-Suche
 
-Wir ersetzen:
-
-fragile startsWith
-fragile Regex
-fragile line checks
-
-durch:
-
-👉 Zustandsmaschine + Brace Tracking
- * 
+/** 
  * 
  * @author Fritz Lindhauer (featuring ChatGpt)
  *
  */
-public class SfsParser {
-
+public class SfsGameParser extends AbstractSfsParser{
+	
+	public SfsGameParser() {
+		super();
+	}
+	
+	public SfsGameParser(File objFile) {
+		super(objFile);
+	}
+	
+	
+	public FlightStateMatch parse() throws IOException, ExceptionZZZ{
+		File objFile = this.getFile();
+		return SfsGameParser.parse(objFile);
+	}
+	
     public static FlightStateMatch parse(File saveFile) throws IOException {
 
         BufferedReader br =
@@ -51,12 +47,13 @@ public class SfsParser {
     }
     
     /** FLIGHTSTATE Detection
+     *  Findet den kompletten FLIGHTSTATE Block.
      * @param lines
      * @return
      */
     private static FlightStateMatch parseFlightState(List<String> lines) {
 
-        FlightStateMatch fs = new FlightStateMatch();
+        FlightStateMatch fs = null;
 
         ParseState state = ParseState.OUTSIDE;
 
@@ -72,6 +69,9 @@ public class SfsParser {
             if (state == ParseState.OUTSIDE) {
 
                 if ("FLIGHTSTATE".equals(t)) {
+                	fs = new FlightStateMatch();
+                	fs.setStartLine(i);
+                	brace = 0;
                     state = ParseState.IN_FLIGHTSTATE;
                 }
             }
@@ -84,6 +84,11 @@ public class SfsParser {
 
                 if (brace == 0 && fsLines.size() > 1) {
                     fs.setLines(fsLines);
+                    fs.setEndLine(i);
+                    
+                    // RESETTE ERST JETZT !!!
+					state = ParseState.OUTSIDE; //Zwar nicht mehr notwendig, aber der Vollständigkeit halber.
+                    
                     return fs;
                 }
             }
@@ -93,23 +98,7 @@ public class SfsParser {
     }
     
     
-    /** Brace Engine (wichtig!)
-     * @param brace
-     * @param line
-     * @return
-     */
-    private static int updateBrace(int brace, String line) {
-
-        for (int i = 0; i < line.length(); i++) {
-
-            char c = line.charAt(i);
-
-            if (c == '{') brace++;
-            if (c == '}') brace--;
-        }
-
-        return brace;
-    }
+   
     
     
     /** Vessel-Level State Machine
@@ -186,7 +175,7 @@ public class SfsParser {
 				// Vessel Identity (ROOT ONLY!)
 				// --------------------------
 				if (!inPart && t.startsWith("pid = ")) {				
-					if (StringZZZ.isEmptyTrimmed(current.getVesselPID())) {				
+					if (StringZZZ.isEmptyTrimmed(current.getVesselPid())) {				
 						current.setVesselPID(
 								t.substring("pid = ".length()).trim()
 						);
@@ -247,47 +236,6 @@ public class SfsParser {
 	return result;
 	}
     
-    /**
-     * Echter Vessel-Start:
-     *
-     * VESSEL
-     * {
-     *     pid =
-     */
-    private static boolean isRealVesselStart(
-            List<String> allLines,
-            int index) {
-
-        if (index + 2 >= allLines.size()) {
-
-            return false;
-        }
-
-        String line0 =
-                allLines.get(index).trim();
-
-        String line1 =
-                allLines.get(index + 1).trim();
-
-        String line2 =
-                allLines.get(index + 2).trim();
-
-        if (!"VESSEL".equals(line0)) {
-
-            return false;
-        }
-
-        if (!"{".equals(line1)) {
-
-            return false;
-        }
-
-        if (!line2.startsWith("pid =")) {
-
-            return false;
-        }
-
-        return true;
-    }
+   
     
 }

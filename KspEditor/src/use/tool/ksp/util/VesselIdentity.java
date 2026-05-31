@@ -22,10 +22,10 @@ public class VesselIdentity {
         return this.sPersistenceId;
     }
    
-    public void setPID(String sPID) {
-    	this.sPid = sPID;
+    public void setPid(String sPid) {
+    	this.sPid = sPid;
     }
-    public String getPId() {
+    public String getPid() {
         return this.sPid;
     }
 

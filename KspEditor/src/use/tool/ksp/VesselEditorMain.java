@@ -40,7 +40,7 @@ public class VesselEditorMain {
 			  
 			  //1. Schritt finde das Vessel, das zu bearbeiten ist im Save
 			  VesselMatch vessel =
-					  VesselFinderTool.findSingleVesselByName(
+					  VesselFinder.findSingleVesselByName(
                         saveFile,
                         vesselName);
 

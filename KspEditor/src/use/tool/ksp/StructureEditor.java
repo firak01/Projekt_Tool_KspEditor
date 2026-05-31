@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * Java 1.7 kompatibel
  */
-public class StructureEditorTool {
+public class StructureEditor {
 
    
     /**

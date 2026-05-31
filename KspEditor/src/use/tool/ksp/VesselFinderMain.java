@@ -31,7 +31,7 @@ public class VesselFinderMain {
 			  System.out.println(vesselName);
 			  
 			  VesselMatch vessel =
-					  VesselFinderTool.findSingleVesselByName(
+					  VesselFinder.findSingleVesselByName(
                         fileGame,
                         vesselName);
 

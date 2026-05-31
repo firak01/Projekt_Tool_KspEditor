@@ -33,11 +33,11 @@ public class VesselMatch {
     	this.vesselIdentity = objVesselIdentity;
     }
     
-    public String getVesselPID() {
-    	return this.getVesselIdentityObject().getPId();
+    public String getVesselPid() {
+    	return this.getVesselIdentityObject().getPid();
     }
     public void setVesselPID(String sPID) {
-    	this.getVesselIdentityObject().setPID(sPID);
+    	this.getVesselIdentityObject().setPid(sPID);
     }
     
     public String getVesselPersistenId() {

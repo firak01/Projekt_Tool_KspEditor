@@ -30,7 +30,7 @@ public class StruktureEditorMain {
           // Zweiter PART bekommt parent = 2000
           // Dritter PART bekommt parent = 2001
           // Vierter PART bekommt parent = 2002
-		  StructureEditorTool.updateParentValues(
+		  StructureEditor.updateParentValues(
                   objFileIn,
                   iIndexAufhaenger,
                   iIndexStrukturStart,

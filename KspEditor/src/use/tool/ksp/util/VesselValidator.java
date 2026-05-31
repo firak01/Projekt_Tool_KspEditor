@@ -1,5 +1,6 @@
 package use.tool.ksp.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,7 +20,11 @@ public final class VesselValidator {
     private VesselValidator() {
     }
 
-    public static void validateVesselFile(Path vesselFile) throws IOException {
+    public static void validateVessel(File fileVessel) throws IOException {
+    	VesselValidator.validateVessel(fileVessel.toPath());
+    }
+    
+    public static void validateVessel(Path vesselFile) throws IOException {
 
         List<String> lines = Files.readAllLines(vesselFile, StandardCharsets.UTF_8);
 
