@@ -5,6 +5,7 @@ import java.util.*;
 
 import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
+import basic.zBasic.util.file.FileTextUtilZZZ;
 import use.tool.ksp.object.*;
 
 
@@ -30,20 +31,9 @@ public class SfsGameParser extends AbstractSfsParser{
 		return SfsGameParser.parse(objFile);
 	}
 	
-    public static FlightstateMatch parse(File saveFile) throws IOException {
-
-        BufferedReader br =
-                new BufferedReader(new FileReader(saveFile));
-
-        List<String> allLines = new ArrayList<String>();
-
-        String line;
-        while ((line = br.readLine()) != null) {
-            allLines.add(line);
-        }
-        br.close();
-
-        return parseFlightState(allLines);
+    public static FlightstateMatch parse(File saveFile) throws IOException, ExceptionZZZ {
+    	 List<String> allLines = FileTextUtilZZZ.readFileToList(saveFile);         
+    	 return parseFlightState(allLines);
     }
     
     /** FLIGHTSTATE Detection
@@ -54,46 +44,49 @@ public class SfsGameParser extends AbstractSfsParser{
     private static FlightstateMatch parseFlightState(List<String> lines) {
 
         FlightstateMatch fs = null;
+        main:{
+        	if(lines==null) break main;
 
-        ParseState state = ParseState.OUTSIDE;
 
-        int brace = 0;
-
-        List<String> fsLines = new ArrayList<String>();
-
-        for (int i = 0; i < lines.size(); i++) {
-
-            String raw = lines.get(i);
-            String t = raw.trim();
-
-            if (state == ParseState.OUTSIDE) {
-
-                if ("FLIGHTSTATE".equals(t)) {
-                	fs = new FlightstateMatch();
-                	fs.setStartLine(i);
-                	brace = 0;
-                    state = ParseState.IN_FLIGHTSTATE;
-                }
-            }
-
-            if (state == ParseState.IN_FLIGHTSTATE) {
-
-                fsLines.add(raw);
-
-                brace = updateBrace(brace, raw);
-
-                if (brace == 0 && fsLines.size() > 1) {
-                    fs.setLines(fsLines);
-                    fs.setEndLine(i);
-                    
-                    // RESETTE ERST JETZT !!!
-					state = ParseState.OUTSIDE; //Zwar nicht mehr notwendig, aber der Vollständigkeit halber.
-                    
-                    return fs;
-                }
-            }
-        }
-
+	        ParseState state = ParseState.OUTSIDE;
+	
+	        int brace = 0;
+	
+	        List<String> fsLines = new ArrayList<String>();
+	
+	        for (int i = 0; i < lines.size(); i++) {
+	
+	            String raw = lines.get(i);
+	            String t = raw.trim();
+	
+	            if (state == ParseState.OUTSIDE) {
+	
+	                if ("FLIGHTSTATE".equals(t)) {
+	                	fs = new FlightstateMatch();
+	                	fs.setStartLine(i);
+	                	brace = 0;
+	                    state = ParseState.IN_FLIGHTSTATE;
+	                }
+	            }
+	
+	            if (state == ParseState.IN_FLIGHTSTATE) {
+	
+	                fsLines.add(raw);
+	
+	                brace = updateBrace(brace, raw);
+	
+	                if (brace == 0 && fsLines.size() > 1) {
+	                    fs.setLines(fsLines);
+	                    fs.setEndLine(i);
+	                    
+	                    // RESETTE ERST JETZT !!!
+						state = ParseState.OUTSIDE; //Zwar nicht mehr notwendig, aber der Vollständigkeit halber.
+	                    
+	                    return fs;
+	                }
+	            }
+	        }
+        }//end main:
         throw new IllegalStateException("FLIGHTSTATE nicht gefunden");
     }
     

@@ -3,8 +3,11 @@ package use.tool.ksp;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.util.file.FileTextReplacerZZZ;
+import basic.zBasic.util.file.FileTextWriterZZZ;
 import use.tool.ksp.object.FlightstateMatch;
 import use.tool.ksp.object.VesselMatch;
 import use.tool.ksp.util.SfsGameParser;
@@ -48,11 +51,21 @@ public class VesselReplacer extends AbstractVesselTool {
 		System.out.println("Game - Pid used:\t '" + sPIdFromGame + "'");
 		
         // 5. Replacement Vessel extrahieren
-        
+		int iLineInFileStart = objVesselToReplace.getVesselStartLine_inFile();
+		int iLineInFileEnd = objVesselToReplace.getVesselEndLine_inFile();
+		List<String> listaStringReplacement = objVesselToReplace.getVesselLines();
+				        
         // 6. Vessel ersetzen
-        
-        // 7. Spielstand schreiben
-       
+		FileTextReplacerZZZ objFileTextReplacer = new FileTextReplacerZZZ(fileGame);
+		boolean bSuccess = objFileTextReplacer.replace(iLineInFileStart, iLineInFileEnd, listaStringReplacement);
+		if(bSuccess) {
+			
+			// 7. Geänderten Spielstand schreiben		      
+			List<String> listLinesNew = objFileTextReplacer.getLines();
+			
+			FileTextWriterZZZ objFileTextWriter = new FileTextWriterZZZ(listLinesNew);
+			bSuccess = objFileTextWriter.writeLines();
+		}
     }
 
 }
