@@ -1,35 +1,31 @@
 package use.tool.ksp.util;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
+import basic.zBasic.util.file.FileEasyZZZ;
 import basic.zBasic.util.file.FileTextUtilZZZ;
-import use.tool.ksp.object.FlightstateMatch;
 import use.tool.ksp.object.VesselMatch;
-import use.tool.ksp.util.ISfsParser.ParseState;
 
 public class SfsVesselParser extends AbstractSfsParser{
 	public SfsVesselParser() {
 		super();
 	}
 	
-	public SfsVesselParser(File objFile) {
+	public SfsVesselParser(File objFile) throws ExceptionZZZ {
 		super(objFile);
 	}
 	
 	public VesselMatch parse() throws IOException, ExceptionZZZ {
 		File objFile = this.getFile();
-		return SfsVesselParser.parse(objFile);
-		
+		return SfsVesselParser.parse(objFile);		
 	}
 	
-	public static VesselMatch parse(File saveFile) throws IOException, ExceptionZZZ {
+	public static VesselMatch parse(File saveFile) throws ExceptionZZZ {
         List<String> allLines = FileTextUtilZZZ.readFileToList(saveFile);
         return parseVessel(allLines);
     }
@@ -37,7 +33,10 @@ public class SfsVesselParser extends AbstractSfsParser{
 	public static VesselMatch parseVessel(List<String> lines) throws ExceptionZZZ {
 		VesselMatch objReturn = null;
 		main:{
-			if(lines==null) break main;
+			if(lines==null) {			
+				ExceptionZZZ ez = new ExceptionZZZ("No lines provided.", iERROR_PARAMETER_EMPTY, SfsVesselParser.class, ReflectCodeZZZ.getMethodCurrentName());
+				throw ez;
+			}
 			
 			ParseState state = ParseState.OUTSIDE;
 		
@@ -142,7 +141,10 @@ public class SfsVesselParser extends AbstractSfsParser{
 						if(!StringZZZ.isEmpty(objReturn.getVesselName())) {
 							//System.out.println("wirklich kurz vor VESSEL ende?");
 							
-							objReturn.setVesselEndLine_inFlightstate(i);						
+							objReturn.setVesselEndLine_inFile(i);
+							
+							//Hier gibt es keinen Flightstate, der übergeben wird.
+							//objReturn.setVesselEndLine_inFlightstate(i);						
 							//result.add(current);
 	
 							// RESETTE ERST JETZT !!!
@@ -153,7 +155,11 @@ public class SfsVesselParser extends AbstractSfsParser{
 					}//end if (brace....							
 				}//end if (state == ParseState.IN_VESSEL) {
 			}//end for
-		
+			if(objReturn==null) {
+				IllegalStateException e =  new IllegalStateException("VESSEL nicht gefunden");
+				ExceptionZZZ ez = new ExceptionZZZ(e);
+				throw ez;
+			}
 		}//end main:		
 		return objReturn;
 	}

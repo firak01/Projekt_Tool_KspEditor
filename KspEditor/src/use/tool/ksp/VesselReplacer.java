@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.util.datatype.dateTime.DateTimeZZZ;
+import basic.zBasic.util.file.FileEasyZZZ;
 import basic.zBasic.util.file.FileTextReplacerZZZ;
 import basic.zBasic.util.file.FileTextWriterZZZ;
 import use.tool.ksp.object.FlightstateMatch;
@@ -27,7 +29,7 @@ public class VesselReplacer extends AbstractVesselTool {
     public void replaceVessel(File fileGame, File fileReplacementVessel) throws IOException, ExceptionZZZ {
 
         // 1. Vessel-Datei validieren
-        VesselValidator.validateVessel(fileReplacementVessel);
+        VesselValidator.validateVesselFile(fileReplacementVessel);
 
         // 2. Replacement Vessel parsen
         SfsVesselParser objParserVessel = new SfsVesselParser(fileReplacementVessel);
@@ -63,8 +65,20 @@ public class VesselReplacer extends AbstractVesselTool {
 			// 7. Geänderten Spielstand schreiben		      
 			List<String> listLinesNew = objFileTextReplacer.getLines();
 			
-			FileTextWriterZZZ objFileTextWriter = new FileTextWriterZZZ(listLinesNew);
-			bSuccess = objFileTextWriter.writeLines();
+			String sFilePathTotal = fileGame.getAbsolutePath();
+			File fileDirectory = FileEasyZZZ.getDirectory(sFilePathTotal);
+					
+			String sFileGameOnly = FileEasyZZZ.getNameOnly(sFilePathTotal);
+			sFileGameOnly = sFileGameOnly + "_" + DateTimeZZZ.computeTimestampStringFormatedDefault();
+			String sFileGameNew = sFileGameOnly + ".sfs"; 
+
+			
+			File fileDirectoryNew = new File("c:\\temp");
+			String sFilePathTotalNew = FileEasyZZZ.joinFilePathName(fileDirectoryNew, sFileGameNew);			
+			System.out.println("Writing new file: '" + sFilePathTotalNew + "'");
+			
+			FileTextWriterZZZ objFileTextWriter = new FileTextWriterZZZ(sFilePathTotalNew);
+			bSuccess = objFileTextWriter.writeLines(listLinesNew);
 		}
     }
 

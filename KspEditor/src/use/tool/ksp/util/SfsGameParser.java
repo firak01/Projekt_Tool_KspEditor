@@ -4,7 +4,9 @@ import java.io.*;
 import java.util.*;
 
 import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
+import basic.zBasic.util.file.FileEasyZZZ;
 import basic.zBasic.util.file.FileTextUtilZZZ;
 import use.tool.ksp.object.*;
 
@@ -21,17 +23,17 @@ public class SfsGameParser extends AbstractSfsParser{
 		super();
 	}
 	
-	public SfsGameParser(File objFile) {
+	public SfsGameParser(File objFile) throws ExceptionZZZ {
 		super(objFile);
 	}
 	
 	
-	public FlightstateMatch parse() throws IOException, ExceptionZZZ{
+	public FlightstateMatch parse() throws ExceptionZZZ{
 		File objFile = this.getFile();
 		return SfsGameParser.parse(objFile);
 	}
 	
-    public static FlightstateMatch parse(File saveFile) throws IOException, ExceptionZZZ {
+    public static FlightstateMatch parse(File saveFile) throws ExceptionZZZ {
     	 List<String> allLines = FileTextUtilZZZ.readFileToList(saveFile);         
     	 return parseFlightState(allLines);
     }
@@ -40,12 +42,15 @@ public class SfsGameParser extends AbstractSfsParser{
      *  Findet den kompletten FLIGHTSTATE Block.
      * @param lines
      * @return
+     * @throws ExceptionZZZ 
      */
-    private static FlightstateMatch parseFlightState(List<String> lines) {
-
-        FlightstateMatch fs = null;
-        main:{
-        	if(lines==null) break main;
+    private static FlightstateMatch parseFlightState(List<String> lines) throws ExceptionZZZ {
+        FlightstateMatch objReturn = null;
+        main:{        	
+        	if(lines==null) {			
+				ExceptionZZZ ez = new ExceptionZZZ("No lines provided.", iERROR_PARAMETER_EMPTY, SfsGameParser.class, ReflectCodeZZZ.getMethodCurrentName());
+				throw ez;
+			}
 
 
 	        ParseState state = ParseState.OUTSIDE;
@@ -62,8 +67,8 @@ public class SfsGameParser extends AbstractSfsParser{
 	            if (state == ParseState.OUTSIDE) {
 	
 	                if ("FLIGHTSTATE".equals(t)) {
-	                	fs = new FlightstateMatch();
-	                	fs.setStartLine(i);
+	                	objReturn = new FlightstateMatch();
+	                	objReturn.setStartLine(i);
 	                	brace = 0;
 	                    state = ParseState.IN_FLIGHTSTATE;
 	                }
@@ -76,18 +81,21 @@ public class SfsGameParser extends AbstractSfsParser{
 	                brace = updateBrace(brace, raw);
 	
 	                if (brace == 0 && fsLines.size() > 1) {
-	                    fs.setLines(fsLines);
-	                    fs.setEndLine(i);
+	                    objReturn.setLines(fsLines);
+	                    objReturn.setEndLine(i);
 	                    
 	                    // RESETTE ERST JETZT !!!
-						state = ParseState.OUTSIDE; //Zwar nicht mehr notwendig, aber der Vollständigkeit halber.
-	                    
-	                    return fs;
+						state = ParseState.OUTSIDE; //Zwar nicht mehr notwendig, aber der Vollständigkeit halber.	                    	                  
 	                }
 	            }
 	        }
+	        if(objReturn==null) {
+	        	IllegalStateException e =  new IllegalStateException("FLIGHTSTATE nicht gefunden");
+	            ExceptionZZZ ez = new ExceptionZZZ(e);
+	            throw ez;
+	        }
         }//end main:
-        throw new IllegalStateException("FLIGHTSTATE nicht gefunden");
+        return objReturn;
     }
     
     
@@ -100,137 +108,140 @@ public class SfsGameParser extends AbstractSfsParser{
      * @return
      * @throws ExceptionZZZ 
      */
-    public static List<VesselMatch> parseVessels(FlightstateMatch fs) throws ExceptionZZZ {
-		
-		List<VesselMatch> result = new ArrayList<VesselMatch>();
-		
-		List<String> lines = fs.getLines();
-		
-		ParseState state = ParseState.OUTSIDE;
-		
-		VesselMatch current = null;
-		int brace = 0;
-		int partBrace = 0;
-		
-		boolean inFlightStateRoot = true;
-		boolean inPart = false;
-		
-		int iFlightStateStartLine = fs.getStartLine();
-		
-		for (int i = 0; i < lines.size(); i++) {
+    public static List<VesselMatch> parseVessels(FlightstateMatch fs) throws ExceptionZZZ {		
+		List<VesselMatch> listReturn = null;
+		main:{
+			if(fs==null) {
+				ExceptionZZZ ez = new ExceptionZZZ( "FlightstateMatch-Object", iERROR_PARAMETER_MISSING, SfsGameParser.class, ReflectCodeZZZ.getMethodCurrentName()); 
+				throw ez;		 
+			}
+			listReturn = new ArrayList<VesselMatch>();			
+			List<String> lines = fs.getLines();
 			
-			String raw = lines.get(i);
-			String t = raw.trim();
+			ParseState state = ParseState.OUTSIDE;
 			
-			// --------------------------
-			// VESSEL START
-			// --------------------------
-			if (state == ParseState.OUTSIDE) {
+			VesselMatch current = null;
+			int brace = 0;
+			int partBrace = 0;
 			
-				if (isRealVesselStart(lines, i)) {
+			boolean inFlightStateRoot = true;
+			boolean inPart = false;
+			
+			int iFlightStateStartLine = fs.getStartLine();
+			
+			for (int i = 0; i < lines.size(); i++) {
 				
-					current = new VesselMatch();
-					current.setVesselStartLine_inFlightstate(i);
-					current.setVesselStartLine_inFile(i+iFlightStateStartLine);
+				String raw = lines.get(i);
+				String t = raw.trim();
+				
+				// --------------------------
+				// VESSEL START
+				// --------------------------
+				if (state == ParseState.OUTSIDE) {
+				
+					if (isRealVesselStart(lines, i)) {
 					
-					state = ParseState.IN_VESSEL;
-					brace = 1;
-					inPart = false;
-				}
-			}//end if (state == ParseState.OUTSIDE) {
-			
-			// --------------------------
-			// VESSEL PARSING
-			// --------------------------
-			if (state == ParseState.IN_VESSEL) {
-			
-				current.getVesselLines().add(raw);
-				
-				brace = updateBrace(brace, raw);
-				
-				// PART tracking
-				if ("PART".equals(t)) {
-
-				    inPart = true;
-				    partBrace = 0;
-				}
-				
-				// WÄHREND PART
-				if (inPart) {
-
-				    partBrace = updateBrace(partBrace, raw);
-
-				    if (partBrace == 0) {
-				        inPart = false;
-				    }
-				}
-				
-				//Merke: Reihenfolge entspricht der Reihenfolge in der VESSEL Struktur
-				
-				// --------------------------
-				// Vessel Identity (ROOT ONLY!)
-				// --------------------------
-				if (!inPart && t.startsWith("pid = ")) {				
-					if (StringZZZ.isEmptyTrimmed(current.getVesselPid())) {				
-						current.setVesselPID(
-								t.substring("pid = ".length()).trim()
-						);
-					}
-				}
-				
-				if (!inPart && t.startsWith("persistentId = ")) {				
-					if (StringZZZ.isEmptyTrimmed(current.getVesselPersistenId())) {				
-						current.setVesselPersistentId(
-								t.substring("persistentId = ".length()).trim()
-						);
-					}
-				}
-				
-				// --------------------------
-				// Vessel Name (ROOT ONLY!)
-				// --------------------------
-				if (!inPart && t.startsWith("name = ")) {				
-					if (StringZZZ.isEmptyTrimmed(current.getVesselName())) {				
-						current.setVesselName(
-								t.substring("name = ".length()).trim()
-						);
-					}
-				}
-				
-				
-				// --------------------------
-				// END VESSEL
-				// --------------------------
-				if (brace == 0) {
-					//System.out.println("wirklich am VESSEL ende?");
-					
-					current.setVesselEndLine_inFlightstate(i);
-					
-					result.add(current);
-					
-					// RESETTE ERST JETZT !!!
-					state = ParseState.OUTSIDE;
-					current = null;
-				}else if(brace == 1) { //merke wir fangen mit brace = 1 an!!!
-					if(!StringZZZ.isEmpty(current.getVesselName())) {
-						//System.out.println("wirklich kurz vor VESSEL ende?");
+						current = new VesselMatch();
+						current.setVesselStartLine_inFlightstate(i);
+						current.setVesselStartLine_inFile(i+iFlightStateStartLine);
 						
-						current.setVesselEndLine_inFlightstate(i);	
-						current.setVesselEndLine_inFile(i+iFlightStateStartLine);
-						result.add(current);
-
+						state = ParseState.IN_VESSEL;
+						brace = 1;
+						inPart = false;
+					}
+				}//end if (state == ParseState.OUTSIDE) {
+				
+				// --------------------------
+				// VESSEL PARSING
+				// --------------------------
+				if (state == ParseState.IN_VESSEL) {
+				
+					current.getVesselLines().add(raw);
+					
+					brace = updateBrace(brace, raw);
+					
+					// PART tracking
+					if ("PART".equals(t)) {
+	
+					    inPart = true;
+					    partBrace = 0;
+					}
+					
+					// WÄHREND PART
+					if (inPart) {
+	
+					    partBrace = updateBrace(partBrace, raw);
+	
+					    if (partBrace == 0) {
+					        inPart = false;
+					    }
+					}
+					
+					//Merke: Reihenfolge entspricht der Reihenfolge in der VESSEL Struktur
+					
+					// --------------------------
+					// Vessel Identity (ROOT ONLY!)
+					// --------------------------
+					if (!inPart && t.startsWith("pid = ")) {				
+						if (StringZZZ.isEmptyTrimmed(current.getVesselPid())) {				
+							current.setVesselPID(
+									t.substring("pid = ".length()).trim()
+							);
+						}
+					}
+					
+					if (!inPart && t.startsWith("persistentId = ")) {				
+						if (StringZZZ.isEmptyTrimmed(current.getVesselPersistenId())) {				
+							current.setVesselPersistentId(
+									t.substring("persistentId = ".length()).trim()
+							);
+						}
+					}
+					
+					// --------------------------
+					// Vessel Name (ROOT ONLY!)
+					// --------------------------
+					if (!inPart && t.startsWith("name = ")) {				
+						if (StringZZZ.isEmptyTrimmed(current.getVesselName())) {				
+							current.setVesselName(
+									t.substring("name = ".length()).trim()
+							);
+						}
+					}
+					
+					
+					// --------------------------
+					// END VESSEL
+					// --------------------------
+					if (brace == 0) {
+						//System.out.println("wirklich am VESSEL ende?");
+						
+						current.setVesselEndLine_inFlightstate(i);
+						
+						listReturn.add(current);
+						
 						// RESETTE ERST JETZT !!!
 						state = ParseState.OUTSIDE;
 						current = null;
-					}else {
-						//System.out.println("wirklich kurz nach VESSEL anfang?");
-					}
-				}//end if (brace....							
-			}//end if (state == ParseState.IN_VESSEL) {
-		}//end for
-		
-		
-	return result;
+					}else if(brace == 1) { //merke wir fangen mit brace = 1 an!!!
+						if(!StringZZZ.isEmpty(current.getVesselName())) {
+							//System.out.println("wirklich kurz vor VESSEL ende?");
+							
+							current.setVesselEndLine_inFlightstate(i);	
+							current.setVesselEndLine_inFile(i+iFlightStateStartLine);
+							listReturn.add(current);
+	
+							// RESETTE ERST JETZT !!!
+							state = ParseState.OUTSIDE;
+							current = null;
+						}else {
+							//System.out.println("wirklich kurz nach VESSEL anfang?");
+						}
+					}//end if (brace....							
+				}//end if (state == ParseState.IN_VESSEL) {
+			}//end for			
+		}//end main:
+		return listReturn;
 	}
     
    

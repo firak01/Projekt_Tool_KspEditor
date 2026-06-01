@@ -1,8 +1,9 @@
 package use.tool.ksp;
 
+import basic.zBasic.IConstantZZZ;
 import use.tool.ksp.util.SfsGameParser;
 
-public abstract class AbstractVesselTool implements IVesselTool{
+public abstract class AbstractVesselTool implements IConstantZZZ, IVesselTool{
 
     protected SfsGameParser parser=null;
 

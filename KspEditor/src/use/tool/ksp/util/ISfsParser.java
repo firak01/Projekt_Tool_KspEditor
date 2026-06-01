@@ -2,6 +2,8 @@ package use.tool.ksp.util;
 
 import java.io.File;
 
+import basic.zBasic.ExceptionZZZ;
+
 /**Grundidee: State Machine statt String-Suche
 
 Wir ersetzen:
@@ -27,5 +29,5 @@ public interface ISfsParser {
 	}
 	
 	public File getFile();
-	public void setFile(File objFile) throws IllegalArgumentException;
+	public void setFile(File objFile) throws ExceptionZZZ;
 }

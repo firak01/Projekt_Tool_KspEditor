@@ -30,7 +30,7 @@ public class VesselReplacerMain {
 
 			  String sFilePathVessel = args[1];
 			  System.out.println(sFilePathVessel);
-			  File fileVessel = new File(sFilePathGame);
+			  File fileVessel = new File(sFilePathVessel);
 			  if(!fileVessel.exists()) throw new IllegalArgumentException("No vessel file found at '" + sFilePathVessel + "'" );
 			  
 			  VesselReplacer objReplacerVessel = new VesselReplacer();

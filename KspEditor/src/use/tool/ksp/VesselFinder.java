@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.datatype.string.StringZZZ;
 import use.tool.ksp.object.FlightstateMatch;
 import use.tool.ksp.object.VesselMatch;
@@ -25,8 +26,7 @@ public class VesselFinder extends AbstractVesselTool{
 	 * Findet genau EIN Vessel über den Namen.
 	 * @throws ExceptionZZZ 
 	 */
-    public static VesselMatch findFirstVesselByName(SfsGameParser objParser, String targetVesselName)
-            throws IOException, ExceptionZZZ {
+    public static VesselMatch findFirstVesselByName(SfsGameParser objParser, String targetVesselName) throws ExceptionZZZ {
     	VesselMatch objReturn = null;
     	main:{
 	        FlightstateMatch fs = objParser.parse();
@@ -67,44 +67,62 @@ public class VesselFinder extends AbstractVesselTool{
    	 * Findet genau EIN Vessel über den Namen.
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findSingleVesselByName(FlightstateMatch fs,String targetVesselName)
-               throws IOException, ExceptionZZZ {
-       	VesselMatch objReturn = null;
-       	main:{       	
-   	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
-   	        ArrayList<VesselMatch>listaVessel = new ArrayList<VesselMatch>();
-   	        for (VesselMatch v : vessels) {
-   	            if (targetVesselName.equals(v.getVesselName())) {
-   	                listaVessel.add(v);
-   	            }
-   	        }
-   	        
-   	        if (listaVessel.size() != 1) {
-   	            throw new IllegalStateException("No Vessel with the name '" + targetVesselName + "' or more than one Vessel. Number of vessels found: " + vessels.size() );
-   	        }
-   	        
-   	        objReturn = listaVessel.get(0);
-       	}//end main:
-           return objReturn;
-       }
+	   public static VesselMatch findSingleVesselByName(FlightstateMatch fs,String targetVesselName) throws ExceptionZZZ {
+	       	VesselMatch objReturn = null;
+	       	main:{   
+	       		if(fs==null) {
+					ExceptionZZZ ez = new ExceptionZZZ( "FlightstateMatch-Object", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;		 
+				}
+	       		if(StringZZZ.isEmptyTrimmed(targetVesselName)) {
+	       			ExceptionZZZ ez = new ExceptionZZZ( "Name of vessel-Object", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;
+	       		}
+	       		
+	   	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
+	   	        ArrayList<VesselMatch>listaVessel = new ArrayList<VesselMatch>();
+	   	        for (VesselMatch v : vessels) {
+	   	            if (targetVesselName.equals(v.getVesselName())) {
+	   	                listaVessel.add(v);
+	   	            }
+	   	        }
+	   	        
+	   	        if (listaVessel.size() != 1) {
+	   	            IllegalStateException e = new IllegalStateException("No Vessel with the name '" + targetVesselName + "' or more than one Vessel. Number of vessels found: " + vessels.size() );
+	   	            ExceptionZZZ ez = new ExceptionZZZ(e);
+	   	            throw ez;
+	   	        }
+	   	        
+	   	        objReturn = listaVessel.get(0);
+	   		}//end main:
+	       	return objReturn;
+	   }
     
        /**
    	 * Findet genau EIN Vessel über den Namen.
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findFirstVesselByName(FlightstateMatch fs, String targetVesselName)
-               throws IOException, ExceptionZZZ {
-       	VesselMatch objReturn = null;
-       	main:{       	
-   	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
-   	        for (VesselMatch v : vessels) {
-   	            if (targetVesselName.equals(v.getVesselName())) {
-   	                objReturn = v;
-   	                break;
-   	            }
-   	        }
-       	}//end main:
-           return objReturn;
+       public static VesselMatch findFirstVesselByName(FlightstateMatch fs, String targetVesselName)throws ExceptionZZZ {
+	       	VesselMatch objReturn = null;
+	       	main:{       	
+	       		if(fs==null) {
+					ExceptionZZZ ez = new ExceptionZZZ( "FlightstateMatch-Object", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;		 
+				}
+	       		if(StringZZZ.isEmptyTrimmed(targetVesselName)) {
+	       			ExceptionZZZ ez = new ExceptionZZZ( "Name of vessel-Object", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;
+	       		}
+	       		
+	   	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
+	   	        for (VesselMatch v : vessels) {
+	   	            if (targetVesselName.equals(v.getVesselName())) {
+	   	                objReturn = v;
+	   	                break;
+	   	            }
+	   	        }
+	       	}//end main:
+            return objReturn;
        }
     
     
@@ -115,8 +133,7 @@ public class VesselFinder extends AbstractVesselTool{
  	 * Findet genau EIN Vessel über die Pid.
  	 * @throws ExceptionZZZ 
  	 */
-     public static VesselMatch findFirstVesselByPersistentId(SfsGameParser objParser, String targetVesselPersistentId)
-             throws IOException, ExceptionZZZ {
+     public static VesselMatch findFirstVesselByPersistentId(SfsGameParser objParser, String targetVesselPersistentId) throws ExceptionZZZ {
      	VesselMatch objReturn = null;
      	main:{
  	        FlightstateMatch fs = objParser.parse();
@@ -175,19 +192,18 @@ public class VesselFinder extends AbstractVesselTool{
            return objReturn;
        }
        
-       public static VesselMatch findFirstVesselByPersistentId(FlightstateMatch fs, String targetVesselPersistentId)
-               throws IOException, ExceptionZZZ {
-       	VesselMatch objReturn = null;
-       	main:{
-       	    List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
-   	        for (VesselMatch v : vessels) {
-   	            if (targetVesselPersistentId.equals(v.getVesselPersistenId())) {
-   	                objReturn = v;
-   	                break;
-   	            }
-   	        }
-       	}//end main:
-           return objReturn;
+       public static VesselMatch findFirstVesselByPersistentId(FlightstateMatch fs, String targetVesselPersistentId) throws ExceptionZZZ {
+	       	VesselMatch objReturn = null;
+	       	main:{
+	       		List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
+	   	        for (VesselMatch v : vessels) {
+	   	            if (targetVesselPersistentId.equals(v.getVesselPersistenId())) {
+	   	                objReturn = v;
+	   	                break;
+	   	            }
+	   	        }       		
+	       	}//end main:
+	        return objReturn;
        }
     
        
@@ -199,52 +215,64 @@ public class VesselFinder extends AbstractVesselTool{
   	 * Findet genau EIN Vessel über die Pid.
   	 * @throws ExceptionZZZ 
   	 */
-      public static VesselMatch findFirstVesselByPid(SfsGameParser objParser, String targetVesselPid)
-              throws IOException, ExceptionZZZ {
-      	VesselMatch objReturn = null;
-      	main:{      	
-  	        FlightstateMatch fs = objParser.parse();
-  	        objReturn = findFirstVesselByPid(fs, targetVesselPid);  	       
-      	}//end main:
-          return objReturn;
+      public static VesselMatch findFirstVesselByPid(SfsGameParser objParser, String targetVesselPid) throws ExceptionZZZ {
+	      	VesselMatch objReturn = null;
+	      	main:{      
+	      		if(objParser==null) {
+					ExceptionZZZ ez = new ExceptionZZZ( "SfsGameParser-Object", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;		 
+				}
+	      		
+	  	        FlightstateMatch fs = objParser.parse();
+	  	        objReturn = findFirstVesselByPid(fs, targetVesselPid);  	       
+	      	}//end main:
+	        return objReturn;
       }
        
      /**
    	 * Findet genau EIN Vessel über die Pid.
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findFirstVesselByPid(File file, String targetVesselPid)
-               throws IOException, ExceptionZZZ {
-       	VesselMatch objReturn = null;
-       	main:{       	
-   	        FlightstateMatch fs = SfsGameParser.parse(file);
-   	        objReturn = findFirstVesselByPid(fs, targetVesselPid);
-       	}//end main:
-           return objReturn;
+       public static VesselMatch findFirstVesselByPid(File file, String targetVesselPid) throws ExceptionZZZ {
+	       	VesselMatch objReturn = null;
+	       	main:{       	
+	   	        FlightstateMatch fs = SfsGameParser.parse(file);
+	   	        objReturn = findFirstVesselByPid(fs, targetVesselPid);
+	       	}//end main:
+	        return objReturn;
        }
        
        /**
   	 * Findet genau EIN Vessel über die Pid
   	 * @throws ExceptionZZZ 
   	 */
-      public static VesselMatch findSingleVesselByPid(File file, String targetVesselPid)
-              throws IOException, ExceptionZZZ {
-      	VesselMatch objReturn = null;
-      	main:{      	
-  	        FlightstateMatch fs = SfsGameParser.parse(file);
-  	        objReturn = findSingleVesselByPid(fs, targetVesselPid);
-      	}//end main:
-          return objReturn;
+      public static VesselMatch findSingleVesselByPid(File file, String targetVesselPid) throws ExceptionZZZ {
+	      	VesselMatch objReturn = null;
+	      	main:{
+	      		if(StringZZZ.isEmpty(targetVesselPid)) {
+	     			ExceptionZZZ ez = new ExceptionZZZ( "targetVesselPid-String", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;
+	     		}
+	      		
+	  	        FlightstateMatch fs = SfsGameParser.parse(file);
+	  	        
+	  	        objReturn = findSingleVesselByPid(fs, targetVesselPid);
+	      	}//end main:
+	        return objReturn;
       }
       
       /**
  	 * Findet genau EIN Vessel über die Pid.
  	 * @throws ExceptionZZZ 
  	 */
-     public static VesselMatch findFirstVesselByPid(FlightstateMatch fs, String targetVesselPid)
-             throws IOException, ExceptionZZZ {
+     public static VesselMatch findFirstVesselByPid(FlightstateMatch fs, String targetVesselPid) throws ExceptionZZZ {
      	VesselMatch objReturn = null;
-     	main:{         	
+     	main:{         	     		
+     		if(StringZZZ.isEmpty(targetVesselPid)) {
+     			ExceptionZZZ ez = new ExceptionZZZ( "targetVesselPid-String", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+				throw ez;
+     		}
+     		
  	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
  	        for (VesselMatch v : vessels) {
  	            if (targetVesselPid.equals(v.getVesselPid())) {
@@ -260,45 +288,51 @@ public class VesselFinder extends AbstractVesselTool{
    	 * Findet genau EIN Vessel über die Pid
    	 * @throws ExceptionZZZ 
    	 */
-       public static VesselMatch findSingleVesselByPid(FlightstateMatch fs, String targetVesselPid)
-               throws IOException, ExceptionZZZ {
-       	VesselMatch objReturn = null;
-       	main:{       	
-   	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
-   	        ArrayList<VesselMatch>listaVessel = new ArrayList<VesselMatch>();
-   	        for (VesselMatch v : vessels) {
-   	            if (targetVesselPid.equals(v.getVesselPid())) {
-   	                listaVessel.add(v);
-   	            }
-   	        }
-   	        
-   	        if (listaVessel.size() != 1) {   	            
-   	            throw new IllegalStateException("No Vessel with the pid '" + targetVesselPid + "' or more than one Vessel. Number of vessels found: " + vessels.size() );
-   	        }
-   	        
-   	        objReturn = listaVessel.get(0);
-       	}//end main:
-           return objReturn;
+       public static VesselMatch findSingleVesselByPid(FlightstateMatch fs, String targetVesselPid) throws ExceptionZZZ {
+	       	VesselMatch objReturn = null;
+	       	main:{       
+	       		if(fs==null) {
+					ExceptionZZZ ez = new ExceptionZZZ( "FlightstateMatch-Object", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;		 
+				}
+	     		if(StringZZZ.isEmpty(targetVesselPid)) {
+	     			ExceptionZZZ ez = new ExceptionZZZ( "targetVesselPid-String", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+					throw ez;
+	     		}
+	       		
+	   	        List<VesselMatch> vessels = SfsGameParser.parseVessels(fs);
+	   	        ArrayList<VesselMatch>listaVessel = new ArrayList<VesselMatch>();
+	   	        for (VesselMatch v : vessels) {
+	   	            if (targetVesselPid.equals(v.getVesselPid())) {
+	   	                listaVessel.add(v);
+	   	            }
+	   	        }
+	   	        
+	   	        if (listaVessel.size() != 1) {   	            
+	   	            throw new IllegalStateException("No Vessel with the pid '" + targetVesselPid + "' or more than one Vessel. Number of vessels found: " + vessels.size() );
+	   	        }
+	   	        
+	   	        objReturn = listaVessel.get(0);
+	       	}//end main:
+	        return objReturn;
        }
 
     
-    /**
-   * Sucht Vessel innerhalb des FLIGHTSTATE.
+   /**
+   * Sucht alle Vessel innerhalb des FLIGHTSTATE.
    * @throws ExceptionZZZ 
    */
-    public static List<VesselMatch> findAllVesselsByName(
-            File saveFile,
-            String targetVesselName)
-            throws IOException, ExceptionZZZ {
+    public static List<VesselMatch> findAllVesselsByName(File saveFile, String targetVesselName) throws ExceptionZZZ {
+    	if(StringZZZ.isEmpty(targetVesselName)) {
+ 			ExceptionZZZ ez = new ExceptionZZZ( "targetVesselName-String", iERROR_PARAMETER_MISSING, VesselFinder.class, ReflectCodeZZZ.getMethodCurrentName()); 
+			throw ez;
+ 		}
+    	
+        FlightstateMatch flightState = SfsGameParser.parse(saveFile);
+       
+        List<VesselMatch> allVessels = SfsGameParser.parseVessels(flightState);
 
-        FlightstateMatch flightState =
-                SfsGameParser.parse(saveFile);
-
-        List<VesselMatch> allVessels =
-                SfsGameParser.parseVessels(flightState);
-
-        List<VesselMatch> result =
-                new ArrayList<VesselMatch>();
+        List<VesselMatch> result = new ArrayList<VesselMatch>();
 
         for (VesselMatch v : allVessels) {
 
@@ -308,98 +342,5 @@ public class VesselFinder extends AbstractVesselTool{
         }
 
         return result;
-    }
-   
-   
-
-//    /**
-//     * Parst EIN komplettes Vessel.
-//     * @throws ExceptionZZZ 
-//     */
-//    private static VesselMatch parseVessel(
-//            List<String> allLines,
-//            int vesselStartIndex) throws ExceptionZZZ {
-//
-//        VesselMatch vessel =
-//                new VesselMatch();
-//
-//        vessel.setVesselStartLine(
-//                vesselStartIndex);
-//
-//        List<String> vesselLines =
-//                new ArrayList<String>();
-//
-//        int braceCounter = 0;
-//
-//        boolean started = false;
-//
-//        for (int i = vesselStartIndex;
-//             i < allLines.size();
-//             i++) {
-//
-//            String line =
-//                    allLines.get(i);
-//
-//            vesselLines.add(line);
-//
-//            String trimmed =
-//                    line.trim();
-//
-//            for (int c = 0;
-//                 c < line.length();
-//                 c++) {
-//
-//                char ch =
-//                        line.charAt(c);
-//
-//                if (ch == '{') {
-//
-//                    braceCounter++;
-//                    started = true;
-//                }
-//
-//                if (ch == '}') {
-//
-//                    braceCounter--;
-//                }
-//            }
-//            
-//            //Der Vesselname ist der erste name = innerhalb des VESSEL-Blocks. Andere sind z.B. PARTS-Namen.
-//            String vesselName = getVesselNameReal(trimmed, vessel);
-//            if(!StringZZZ.isEmptyNull(vesselName)) {
-//            	vessel.setVesselName(vesselName);
-//            }
-//            
-//
-//            if (started && braceCounter == 0) {
-//
-//                vessel.setVesselEndLine(i);
-//
-//                vessel.setVesselLines(vesselLines);
-//
-//                return vessel;
-//            }
-//        }
-//
-//        return null;
-//    }
-    
-//    private static String getVesselNameReal(String trimmed, VesselMatch vessel) throws ExceptionZZZ {
-//    	String sReturn = null;
-//    	main:{
-//	    	 //Der Vesselname ist der erste name = innerhalb des VESSEL-Blocks. Andere sind z.B. PARTS-Namen.
-//    		 //Wurde der VesselName schon einmal vergeben, dann ist es ein anderer. 
-//    		if(!StringZZZ.isEmptyTrimmed(vessel.getVesselName())) break main;
-//    		
-//    		//Wurde noch kein VesselName vergeben, dann ist es ggfs. möglich einen zu finden.
-//	        if (trimmed.startsWith("name = ")) {
-//	        	sReturn =
-//                        trimmed.substring(
-//                                "name = ".length())
-//                                .trim();
-//	        	
-//	        }
-//    	}//end main:
-//    	return sReturn;
-//    }
+    }      
 }
