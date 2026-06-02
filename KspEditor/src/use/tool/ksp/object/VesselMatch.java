@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.util.datatype.dateTime.DateTimeZZZ;
 import use.tool.ksp.util.VesselIdentity;
 
 public class VesselMatch {
@@ -144,9 +146,10 @@ public class VesselMatch {
 
     /**
      * Debug-Ausgabe des kompletten Vessel-Blocks.
+     * @throws ExceptionZZZ 
      */
     public void debugWriteToFile(File outputDirectory)
-            throws IOException {
+            throws IOException, ExceptionZZZ {
 
         if (!outputDirectory.exists()) {
             outputDirectory.mkdirs();
@@ -155,9 +158,12 @@ public class VesselMatch {
         String safeName =
                 vesselName.replaceAll("[^a-zA-Z0-9_\\-]", "_");
 
+        Long lTimestamp = DateTimeZZZ.computeTimestamp();
+        String sDateTime = DateTimeZZZ.computeTimestampStringFormatedDefault(lTimestamp);
+        
         File outFile =
                 new File(outputDirectory,
-                        "VESSEL_" + safeName + ".sfs");
+                        "VESSEL_" + safeName + "_" + sDateTime + ".sfs");
 
         BufferedWriter writer =
                 new BufferedWriter(new FileWriter(outFile));

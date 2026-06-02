@@ -11,7 +11,10 @@ public class VesselFinderMain {
     public static void main(String[] args) { 
           
     	try {
-    		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\input\20260522experiment02.sfs" 
+    		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\VesselFinderMain\input\20260522experiment02.sfs"
+    		
+    		//Beispiele mit einer hinzugefügten Struktur "bohrer" 
+    		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\VesselFinderMain\input\20260522experiment02 - c - Neues Teil an das Ende der PARTS POSITIONIR.sfs"
     		//"Float Raff 01experiment"
 			if (args.length < 1) {
 	            System.out.println("Verwendung:");
@@ -48,7 +51,7 @@ public class VesselFinderMain {
                         + vessel.findHighestPartIndex());
 
 			  vessel.debugWriteToFile(
-                new File("exampleZZZ\\debug"));
+                new File("exampleZZZ\\VesselFinderMain\\output"));
     
     	
 	    } catch (Exception e) {

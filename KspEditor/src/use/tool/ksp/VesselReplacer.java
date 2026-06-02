@@ -38,7 +38,11 @@ public class VesselReplacer extends AbstractVesselTool {
 		String sPIdFromVessel = objReplacementVessel.getVesselPid();
 		System.out.println("Vessel - Pid used:\t '" + sPIdFromVessel + "'");
 		
+		String sNameFromVessel = objReplacementVessel.getVesselName();
+		System.out.println("Vessel - Name found:\t '" + sNameFromVessel + "'");
 
+		List<String> listaStringReplacement = objReplacementVessel.getVesselLines();
+		
 		// 3. Spielstand parsen
         SfsGameParser objParserGame = new SfsGameParser(fileGame);
 				
@@ -55,8 +59,7 @@ public class VesselReplacer extends AbstractVesselTool {
         // 5. Replacement Vessel extrahieren
 		int iLineInFileStart = objVesselToReplace.getVesselStartLine_inFile();
 		int iLineInFileEnd = objVesselToReplace.getVesselEndLine_inFile();
-		List<String> listaStringReplacement = objVesselToReplace.getVesselLines();
-				        
+						        
         // 6. Vessel ersetzen
 		FileTextReplacerZZZ objFileTextReplacer = new FileTextReplacerZZZ(fileGame);
 		boolean bSuccess = objFileTextReplacer.replace(iLineInFileStart, iLineInFileEnd, listaStringReplacement);
