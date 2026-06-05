@@ -7,6 +7,10 @@ import use.tool.ksp.util.SfsGameParser;
 
 
 
+/**Ergänze ein VESSEL (Vessel-Datei) um die Struktur mehrerer PARTS (Strucure-Datei)
+ * @author Fritz Lindhauer
+ *
+ */
 public class StructureAdderMain {
 
     public static void main(String[] args) { 
