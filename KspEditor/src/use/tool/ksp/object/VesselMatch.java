@@ -14,13 +14,22 @@ import use.tool.ksp.util.VesselIdentity;
 public class VesselMatch {
 
 	private VesselIdentity vesselIdentity;
-    private String vesselName;
+    private String sVesselName;
 
-    private int vesselStartLine_inFlightstate;
-    private int vesselEndLine_inFlightstate;
+    private int iVesselStartLine_inFlightstate=-1;
+    private int iVesselEndLine_inFlightstate=-1;
 
-    private int vesselStartLine_inFile;
-    private int vesselEndLine_inFile;
+    private int iVesselStartLine_inFile=-1;
+    private int iVesselEndLine_inFile=-1;
+    
+    private int iVesselPartStartLine=-1;
+    private int iVesselPartEndLine=-1;
+    
+    private int iVesselPartStartLine_inFlightstate=-1;
+    private int iVesselPartEndLine_inFlightstate=-1;
+
+    private int iVesselPartStartLine_inFile=-1;
+    private int iVesselPartEndLine_inFile=-1;
     
     private List<String> vesselLines = new ArrayList<String>();
 
@@ -54,48 +63,143 @@ public class VesselMatch {
     
     //+++++++++++++++++++++++++++++++++++++++++++
     public String getVesselName() {
-        return vesselName;
+        return sVesselName;
     }
 
     public void setVesselName(String vesselName) {
-        this.vesselName = vesselName;
+        this.sVesselName = vesselName;
+    }
+
+    //+++++++++++++++++++++++++++++++++++++++++++
+    public int getVesselPartStartLine() {
+        return iVesselPartStartLine;
+    }
+
+    public void setVesselPartStartLine(int vesselPartStartLine) {
+        this.iVesselPartStartLine = vesselPartStartLine;
+    }
+    
+    public int getVesselPartEndLine() {
+        return iVesselPartEndLine;
+    }
+
+    public void setVesselPartEndLine(int vesselPartEndLine) {
+        this.iVesselPartEndLine = vesselPartEndLine;
+    }
+    
+    public void updateVesselPartStartLine(int iVesselPartStartLineNew) {
+    	int iVesselPartStartLine = this.getVesselPartStartLine();
+    	if(iVesselPartStartLine>iVesselPartStartLineNew | iVesselPartStartLine==-1) {
+    		this.setVesselPartStartLine(iVesselPartStartLineNew);
+    	}
+    }
+    
+    public void updateVesselPartEndLine(int iVesselPartEndLineNew) {
+    	int iVesselPartEndLine = this.getVesselPartEndLine();
+    	if(iVesselPartEndLine<iVesselPartEndLineNew | iVesselPartEndLine==-1) {
+    		this.setVesselPartEndLine(iVesselPartEndLineNew);
+    	}
+    }
+    
+    //+++++++++++++++++++++++++++++++++++++++++++
+    public int getVesselPartStartLine_inFlightstate() {
+        return iVesselPartStartLine_inFlightstate;
+    }
+
+    public void setVesselPartStartLine_inFlightstate(int vesselPartStartLine) {
+        this.iVesselPartStartLine_inFlightstate = vesselPartStartLine;
+    }
+
+    public int getVesselPartEndLine_inFlightstate() {
+        return iVesselPartEndLine_inFlightstate;
+    }
+
+    public void setVesselPartEndLine_inFlightstate(int vesselPartEndLine) {
+       this.iVesselPartEndLine_inFlightstate = vesselPartEndLine;
+    }
+    
+    public void updateVesselPartStartLine_inFlightstate(int iVesselPartStartLineNew) {
+    	int iVesselPartStartLine = this.getVesselPartStartLine_inFlightstate();
+    	if(iVesselPartStartLine>iVesselPartStartLineNew | iVesselPartStartLine==-1) {
+    		this.setVesselPartStartLine_inFlightstate(iVesselPartStartLineNew);
+    	}
+    }
+    
+    public void updateVesselPartEndLine_inFlightstate(int iVesselPartEndLineNew) {
+    	int iVesselPartEndLine = this.getVesselPartEndLine_inFlightstate();
+    	if(iVesselPartEndLine<iVesselPartEndLineNew | iVesselPartEndLine==-1) {
+    		this.setVesselPartEndLine_inFlightstate(iVesselPartEndLineNew);
+    	}
+    }
+    
+    //++++++++++++++++++++++++++++++++++++++++++
+    public int getVesselPartStartLine_inFile() {
+        return iVesselPartStartLine_inFile;
+    }
+
+    public void setVesselPartStartLine_inFile(int vesselPartStartLine) {
+        this.iVesselPartStartLine_inFile = vesselPartStartLine;
+    }
+
+    public int getVesselPartEndLine_inFile() {
+        return iVesselPartEndLine_inFile;
+    }
+
+    public void setVesselPartEndLine_inFile(int vesselPartEndLine) {
+       this.iVesselPartEndLine_inFile = vesselPartEndLine;
+    }
+    
+    public void updateVesselPartStartLine_inFile(int iVesselPartStartLineNew) {
+    	int iVesselPartStartLine = this.getVesselPartStartLine_inFile();
+    	if(iVesselPartStartLine>iVesselPartStartLineNew | iVesselPartStartLine==-1) {
+    		this.setVesselPartStartLine_inFile(iVesselPartStartLineNew);
+    	}
+    }
+    
+    public void updateVesselPartEndLine_inFile(int iVesselPartEndLineNew) {
+    	int iVesselPartEndLine = this.getVesselPartEndLine_inFile();
+    	if(iVesselPartEndLine<iVesselPartEndLineNew | iVesselPartEndLine==-1) {
+    		this.setVesselPartEndLine_inFile(iVesselPartEndLineNew);
+    	}
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++
     public int getVesselStartLine_inFlightstate() {
-        return vesselStartLine_inFlightstate;
+        return iVesselStartLine_inFlightstate;
     }
 
     public void setVesselStartLine_inFlightstate(int vesselStartLine) {
-        this.vesselStartLine_inFlightstate = vesselStartLine;
+        this.iVesselStartLine_inFlightstate = vesselStartLine;
     }
 
     public int getVesselEndLine_inFlightstate() {
-        return vesselEndLine_inFlightstate;
+        return iVesselEndLine_inFlightstate;
     }
 
     public void setVesselEndLine_inFlightstate(int vesselEndLine) {
-       this.vesselEndLine_inFlightstate = vesselEndLine;
+       this.iVesselEndLine_inFlightstate = vesselEndLine;
     }
     
     //++++++++++++++++++++++++++++++++++++++++++
     public int getVesselStartLine_inFile() {
-        return vesselStartLine_inFile;
+        return iVesselStartLine_inFile;
     }
 
     public void setVesselStartLine_inFile(int vesselStartLine) {
-        this.vesselStartLine_inFile = vesselStartLine;
+        this.iVesselStartLine_inFile = vesselStartLine;
     }
 
     public int getVesselEndLine_inFile() {
-        return vesselEndLine_inFile;
+        return iVesselEndLine_inFile;
     }
 
     public void setVesselEndLine_inFile(int vesselEndLine) {
 
-       this.vesselEndLine_inFile = vesselEndLine;
+       this.iVesselEndLine_inFile = vesselEndLine;
     }
 
+    
+    
     //++++++++++++++++++++++++++++++++++++++++++++++++
 
     public List<String> getVesselLines() {
@@ -156,7 +260,7 @@ public class VesselMatch {
         }
 
         String safeName =
-                vesselName.replaceAll("[^a-zA-Z0-9_\\-]", "_");
+                sVesselName.replaceAll("[^a-zA-Z0-9_\\-]", "_");
 
         Long lTimestamp = DateTimeZZZ.computeTimestamp();
         String sDateTime = DateTimeZZZ.computeTimestampStringFormatedDefault(lTimestamp);

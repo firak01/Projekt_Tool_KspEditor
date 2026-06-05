@@ -99,4 +99,96 @@ public class AbstractSfsParser implements IConstantZZZ, ISfsParser{
 
         return brace;
     }
+    
+    
+    /**Weil PART Zeilen ggfs. auch innerhalb von anderen Modulen (z.B. KIS-Mod Containern) liegen können, 
+     * wird diese Methode benötigt für die Parser.
+     * @param allLines
+     * @param index
+     * @return
+     */
+    protected static boolean isRealVesselPartStart(
+            List<String> allLines,
+            int index) {
+
+        if (index + 2 >= allLines.size()) {
+
+            return false;
+        }
+
+        String line0 =
+                allLines.get(index).trim();
+
+        String line1 =
+                allLines.get(index + 1).trim();
+
+        String line2 =
+                allLines.get(index + 2).trim();
+        
+        
+        if (!"PART".equals(line0)) {
+
+            return false;
+        }else {
+//        	System.out.println("debug break 3");
+        }
+
+        if (!"{".equals(line1)) {
+
+            return false;
+        }
+
+        if (!line2.startsWith("name =")) {
+
+            return false;
+        }
+
+        /*
+         * Zusätzliche Prüfung:
+         * Ein echter PART liegt direkt innerhalb des VESSEL.
+         */
+        int nestingLevel =
+                determineNestingLevel(allLines, index);
+
+        //Wir übergeben auch reine VESSEL Dateien, dann ist VESSEL oberste Ebene und nicht GAME. Somit verschiebt sich die Ebene.
+        return nestingLevel <= 2; //return nestingLevel == 2;
+    }
+    
+    /**Dabei gilt:
+
+Position	Level
+innerhalb VESSEL	1
+innerhalb PART		2
+innerhalb MODULE	3
+innerhalb ITEM		4
+KIS-PART			5
+
+Ein echter PART-Start wird also genau bei level == 1 gefunden, bevor seine öffnende { gelesen wurde. Je nach Implementierung kann auch level == 2 korrekt sein; das muss zum Zählzeitpunkt passen.
+     * @param allLines
+     * @param endExclusive
+     * @return
+     */
+    protected static int determineNestingLevel(
+            List<String> allLines,
+            int endExclusive) {
+
+        int level = 0;
+
+        for (int i = 0; i < endExclusive; i++) {
+
+            String line =
+                    allLines.get(i).trim();
+
+            if ("{".equals(line)) {
+
+                level++;
+            }
+            else if ("}".equals(line)) {
+
+                level--;
+            }
+        }
+
+        return level;
+    }
 }

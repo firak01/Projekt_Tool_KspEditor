@@ -82,6 +82,18 @@ public class StructureAdder extends AbstractParserUsingTool {
 				List<String> listaStringReplacement = objVessel.getVesselLines();
 				System.out.println("Target Vessel besitzt anfangs " + objVessel.countParts() + " PARTS.");
 				
+				int iLineStart = objVessel.getVesselPartStartLine();
+				int iLineEnd = objVessel.getVesselPartEndLine();
+				System.out.println("Target Vessel PART-Abschnitte von " + iLineStart+ " - " + iLineEnd);
+				
+				int iLineStart_inFile = objVessel.getVesselPartStartLine_inFile();
+				int iLineEnd_inFile = objVessel.getVesselPartEndLine_inFile();
+				System.out.println("Target Vessel PART-Abschnitte in Datei von " + iLineStart_inFile+ " - " + iLineEnd_inFile);
+				
+				int iLineStart_inFlightstate = objVessel.getVesselPartStartLine_inFlightstate();
+				int iLineEnd_inFlightstate = objVessel.getVesselPartEndLine_inFlightstate();
+				System.out.println("Target Vessel PART-Abschnitte in Flightstate von " + iLineStart_inFlightstate+ " - " + iLineEnd_inFlightstate);
+				
 				
 		        // 3. Vessel im Spielstand finden
 //		        VesselFinder objVesselFinder = new VesselFinder(objParserGame);

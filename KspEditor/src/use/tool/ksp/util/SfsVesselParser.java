@@ -50,6 +50,13 @@ public class SfsVesselParser extends AbstractSfsParser{
 				String raw = lines.get(i);
 				String t = raw.trim();
 				
+//				if(i==2390) {
+//					System.out.println("DEBUG BREAK 1");
+//				}
+//				if(t.equals("name = KKAOSS.KIS.FuelTank")) {
+//					System.out.println("DEBUG BREAK 2");
+//				}
+				
 				// --------------------------
 				// VESSEL START
 				// --------------------------
@@ -75,28 +82,67 @@ public class SfsVesselParser extends AbstractSfsParser{
 					
 					brace = updateBrace(brace, raw);
 					
-					// PART tracking
-					if ("PART".equals(t)) {
-	
+					// PART tracking 					
+					//Diese einfache Abfrage reicht aber nicht aus if ("PART".equals(t)) {
+					if(isRealVesselPartStart(lines, i)) {
+						int iVesselStart = i;
+						if(iVesselStart >= 0) {
+							int iPartStart = i;
+							objReturn.updateVesselPartStartLine(iPartStart);
+						}
+						
+						int iVesselStartInFile = objReturn.getVesselStartLine_inFile();
+						if(iVesselStartInFile>=0) {
+							int iPartInFileStart = iVesselStartInFile + i;
+							objReturn.updateVesselPartStartLine_inFile(iPartInFileStart);
+						}
+						
+						int iVesselStartInFlightState = objReturn.getVesselStartLine_inFlightstate();
+						if(iVesselStartInFlightState>=0) {
+							int iPartStart = iVesselStartInFlightState + i;
+							objReturn.updateVesselPartStartLine_inFlightstate(iPartStart);
+						}
+						
 					    inPart = true;
-					    partBrace = 0;
+					    partBrace = 1;
 					}
 					
 					// WÄHREND PART
-					if (inPart) {
-	
-					    partBrace = updateBrace(partBrace, raw);
-	
-					    if (partBrace == 0) {
-					        inPart = false;
-					    }
+					if (inPart) {						
+						if (partBrace >= 1) {
+							int iVesselEnd = i;
+							if(iVesselEnd>=0) {
+								int iPartEnd = i;
+								objReturn.updateVesselPartEndLine(iPartEnd);
+							}
+					        
+							int iVesselStartInFile = objReturn.getVesselStartLine_inFile();
+							if(iVesselStartInFile>=0) {
+								int iPartInFileEnd = iVesselStartInFile + i;
+								objReturn.updateVesselPartEndLine_inFile(iPartInFileEnd);
+							}
+							
+							int iVesselStartInFlightState = objReturn.getVesselStartLine_inFlightstate();
+							if(iVesselStartInFlightState>=0) {
+								int iPartEnd = iVesselStartInFlightState + i;
+								objReturn.updateVesselPartEndLine_inFlightstate(iPartEnd);
+							}		
+
+							partBrace = updateBrace(partBrace, raw);	
+							
+							if (partBrace <= 1 && !t.equals("PART")) { //wir starten mit 1, die gleiche Zeile soll aber ausgeschlossen werden.
+							       inPart = false;					        					        
+							 }
+						}
+						
+						
 					}
-					
-					//Merke: Reihenfolge entspricht der Reihenfolge in der VESSEL Struktur
 					
 					// --------------------------
 					// Vessel Identity (ROOT ONLY!)
 					// --------------------------
+					
+					//Merke: Reihenfolge entspricht der Reihenfolge in der VESSEL Struktur									
 					if (!inPart && t.startsWith("pid = ")) {				
 						if (StringZZZ.isEmptyTrimmed(objReturn.getVesselPid())) {				
 							objReturn.setVesselPID(
