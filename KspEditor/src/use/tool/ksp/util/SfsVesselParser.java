@@ -20,7 +20,7 @@ public class SfsVesselParser extends AbstractSfsParser{
 		super(objFile);
 	}
 	
-	public VesselMatch parse() throws IOException, ExceptionZZZ {
+	public VesselMatch parse() throws ExceptionZZZ {
 		File objFile = this.getFile();
 		return SfsVesselParser.parse(objFile);		
 	}
