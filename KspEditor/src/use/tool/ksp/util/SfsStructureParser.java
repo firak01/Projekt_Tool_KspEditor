@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.util.abstractList.ArrayListUtilZZZ;
 import basic.zBasic.util.file.FileTextUtilZZZ;
 import use.tool.ksp.object.PartMatch;
 import use.tool.ksp.object.VesselMatch;
 
-public class SfsStructureParser  extends AbstractSfsParser{
+public class SfsStructureParser  extends AbstractSfsParser implements ISfsStructureParser{
 
 	public SfsStructureParser() {
 		super();
@@ -108,5 +109,18 @@ public class SfsStructureParser  extends AbstractSfsParser{
         }
 
         return result;
+    }
+    
+    public List<String> toRawString(List<PartMatch> listaPart) throws ExceptionZZZ {
+    	ArrayList<String> listasReturn = null;
+    	main:{
+    		if(listaPart==null) break main;
+    		
+    		for(PartMatch part : listaPart) {
+    			List<String>lines = part.getLines();
+    			listasReturn = ArrayListUtilZZZ.join(listasReturn, lines);    			
+    		}
+    	}//end main:
+    	return listasReturn;
     }
 }

@@ -11,6 +11,7 @@ public class VesselFinderMain {
     public static void main(String[] args) { 
           
     	try {
+    		//Beispiel ohne die hinzugefügte Struktur "bohrer"
     		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\VesselFinderMain\input\20260522experiment02.sfs"
     		
     		//Beispiele mit einer hinzugefügten Struktur "bohrer" 
