@@ -6,6 +6,7 @@ import basic.zBasic.util.datatype.enums.EnumHelperZZZ;
 import basic.zBasic.util.datatype.enums.EnumUtilZZZ;
 import use.tool.ksp.object.VesselMatch;
 import use.tool.ksp.util.ISfsStructureParser;
+import use.tool.ksp.util.InputValidationUtil;
 import use.tool.ksp.util.SfsGameParser;
 
 
@@ -36,6 +37,7 @@ public class StructureAdderMain {
 			//attN = left, -1
 			//attN = back, -1
 			//attN = top, -1
+    		//
     		//wir wollen am "bottom" anbinden.
     		//bottom
     		
@@ -65,41 +67,14 @@ public class StructureAdderMain {
 			  System.out.println(sPegElementIndex);
 			  int iPegElementIndex = new Integer(sPegElementIndex).intValue();
 			  
-			  String sPegElementNode = args[3];
-			  System.out.println(sPegElementNode);
+			  String sPegElementNodeIn = args[3];
+			  System.out.println(sPegElementNodeIn);
 			  
-			  //Wie nun auf das Enum kommen???
-			  //https://stackoverflow.com/questions/8108980/java-using-enum-with-switch-statement
-			  int iPegElementNode = 1;
-			  ISfsStructureParser.PegPartNode whichEnumPegPartNode = ISfsStructureParser.PegPartNode.values()[iPegElementNode];
-			  
-			  
-			  switch(whichEnumPegPartNode) {
-			  case back:
-				  
-				break;
-			  
-			  default:{
-				System.out.println("Dieser Typ wird nicht behandelt: '" + whichEnumPegPartNode.name() + "'" );
-				break;
-			  }
-			  
-			  TODOGOON20260606;
-			  //Meine IDEE: Gehe in einer Schleife von 1 bis 6 alle enums durch 
-			  //            Vergleiche dann den Namen mit sPegElementNode
-			  //            Bei Gleichstand hat man das enum gefunden...
-
-			  //Merke: EnumHelperZZZ sucht enum nach dem Namen in einer Klasse.
-			  //Am ehesten wäre noch EnumUtilZZZ zu erweitern
-			  //um:
-			  //
-			  ISfsStructureParser.PegPartNode whichEnumPegPartNode2 = EnumUtilZZZ.getEnumByName(ISfsStructureParser.PegPartNode.values(), sPegElementNode);
-			  
-    	}	
-			  
+			  //Idee: Enum holen und Eingabevalidierung für String - Übergabewert, der einem enum entsprechen soll			  
+			  ISfsStructureParser.PegPartNode objEnumPegPartNode = InputValidationUtil.parsePegPartNode(sPegElementNodeIn);
 			  
 			  StructureAdder objStructureAdder = new StructureAdder();
-			  boolean bSuccess = objStructureAdder.addStructure(fileVessel, fileStructure, iPegElementIndex, enumPegPartNode);
+			  boolean bSuccess = objStructureAdder.addStructure(fileVessel, fileStructure, iPegElementIndex, objEnumPegPartNode);
 			 
 	    } catch (Exception e) {
 	        e.printStackTrace();

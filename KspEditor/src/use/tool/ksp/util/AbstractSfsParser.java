@@ -46,7 +46,7 @@ public class AbstractSfsParser implements IConstantZZZ, ISfsParser{
      * {
      *     pid =
      */
-    protected static boolean isRealVesselStart(
+    public static boolean isRealVesselStart(
             List<String> allLines,
             int index) {
 
@@ -107,7 +107,7 @@ public class AbstractSfsParser implements IConstantZZZ, ISfsParser{
      * @param index
      * @return
      */
-    protected static boolean isRealVesselPartStart(
+    public static boolean isRealVesselPartStart(
             List<String> allLines,
             int index) {
 
@@ -168,7 +168,7 @@ Ein echter PART-Start wird also genau bei level == 1 gefunden, bevor seine öffn
      * @param endExclusive
      * @return
      */
-    protected static int determineNestingLevel(
+    public static int determineNestingLevel(
             List<String> allLines,
             int endExclusive) {
 

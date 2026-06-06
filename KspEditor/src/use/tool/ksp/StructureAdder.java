@@ -124,6 +124,11 @@ public class StructureAdder extends AbstractParserUsingTool {
 			
 			//String sPegElementNode = ISfsStructureParser.PegPartNode.bottom.name();;
 			String sPegElementNode = enumPegPartNode.name();;
+			System.out.println("Die Struktur soll an diesen Node des Aufhängerelements gehängt werden: '" + sPegElementNode + "'");
+			
+			int iIndexPartNew = objVessel.countParts();
+			String sAttN = "attN = " + sPegElementNode + ", " + iIndexPartNew;
+			System.out.println(sAttN);
 			
 			
 			//3. Unterhalb des letzten PART - Abschnitts die Struktur einfügen

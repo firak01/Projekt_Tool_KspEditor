@@ -9,6 +9,7 @@ import java.util.List;
 
 import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.util.datatype.dateTime.DateTimeZZZ;
+import use.tool.ksp.util.SfsVesselParser;
 import use.tool.ksp.util.VesselIdentity;
 
 public class VesselMatch {
@@ -216,14 +217,16 @@ public class VesselMatch {
     public int countParts() {
 
         int count = 0;
-
+        int i = 0;
         for (String line : vesselLines) {
-
-            String trimmed = line.trim();
-
-            if ("PART".equals(trimmed)) {
+            //Wg. KIS - Mod und vorhanden Containern, die PARTS beinhalten, reicht das nicht aus.
+            //String trimmed = line.trim();
+            //if ("PART".equals(trimmed)) {
+        	
+            if(SfsVesselParser.isRealVesselPartStart(vesselLines, i)) {
                 count++;
             }
+            i++;
         }
 
         return count;
