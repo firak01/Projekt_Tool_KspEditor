@@ -5,7 +5,15 @@ import java.io.File;
 public class StructureEditorMain {
 	public static void main(String[] args) {
 		try {
-			//C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\StructureEditorMain\input\bohrer FGL.sfs
+			//AUSGANGSSTRUKTUR
+			//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\StructureEditorMain\input\bohrer FGL_ohneAnbaustelle.sfs"
+			//
+			//"dynamsicher" Index des Aufhängerelments
+			//64
+			//
+			//"dynamischer" Index des ersten PART der Struktur im neuen VESSEL (Entspricht der "Anzahl der PARTS im bisherigen VESSEL minus 1")
+			//255
+			//
 			if (args.length < 1) {
 	            System.out.println("Verwendung:");
 	            System.out.println("  java StructureEditorMainKSP <pfad-zur-Datei der Struktur .sfs>");

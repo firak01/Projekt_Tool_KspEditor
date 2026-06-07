@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import basic.zBasic.ExceptionZZZ;
+import basic.zBasic.util.file.FileEasyZZZ;
+import use.tool.ksp.util.AbstractSfsParser;
+
 /**
  * KSP 1.5.1 .sfs Parent-Aktualisierer
  *
@@ -49,12 +53,15 @@ public class StructureEditor {
         Pattern objPatternParent =
                 Pattern.compile("^\\s*parent\\s*=\\s*-?\\d+\\s*$");
 
+        int iLine = 0;
         for (String sLine : listaLine) {
 
             String sLineNew = sLine;
 
             // Beginn eines PART-Blocks
-            if (sLine.trim().equals("PART")) {
+            // so einfach ist nicht ausreichen. if (sLine.trim().equals("PART")) {
+            boolean bRealVesselPart = AbstractSfsParser.isRealVesselPartStart(listaLine, iLine);
+            if(bRealVesselPart) {
                 bInsidePart = true;
             }
 
@@ -75,10 +82,48 @@ public class StructureEditor {
                         iCurrentParent++;
                     }
 
-                    sLineNew = replaceParentLine(sLine, iNewValue);
-
-                    iPartCount++;
+                    sLineNew = replaceParentLine(sLine, iNewValue);                                      
                 }
+                
+                TODOGOON20260607;//Es muss noch der attnNode überarbeitet werden.                
+                //Zielwerte aus dem schon passend überarbeiten Beispiel:
+                //parent = 64
+                //attN = top, 256
+        		//attN = bottom, 64
+                
+                //attN = top,    <im ersten PART der Strukur kommt die Anzahl der Teile des VESSEL rein + 1, also der dynamische Indexwert des folgenden PART>
+                //attN = bottom, <im ersten PART der Strukur kommt der dynamische Indexwert des Parent rein>
+                                               
+                //IDEE: Errechne aus dem Ausgangsindex den Nun zu verwendenden Index (quasi eine Art offset) 
+                //IDEE: übergib irgendwie den Ausgangsindex als Wert aus dem ersten PART, attn = top ... also hier 455 
+                //parent = 453
+                //attN = top, 455
+        		//attN = bottom, 453
+        			
+                
+                //Das zweite PART der Struktur hat
+                //Zielwerte aus dem schon passend überarbeiten Beispiel:
+                //parent = 255
+                //attN = bottom, -1
+                //attN = top, 255
+              
+                //attN = top,    <im zweiten PART der Strukur kommt der dynamische Indexwert des Parent rein>
+                //attN = bottom, <im zweiten PART der Strukur kommt -1 rein, also keine Verbindung>
+              
+                
+                //Ausgangswerte zur IDEE zur offset Berechnung, 
+                //das zweite Teil hatte also den dynamischen Index 455                
+                //das erste Teil hatte also den dynamsichen Index 454
+                //parent = 454
+                //attN = bottom, -1
+        		//attN = top, 454		
+               
+               
+                //BEACHTE
+                //weitere PARTs
+                //und auch srfN = srfAttach, 455
+                
+                iPartCount++;
             }
 
             listaLineOut.add(sLineNew);
@@ -90,6 +135,8 @@ public class StructureEditor {
             if (bInsidePart && sLine.trim().equals("}")) {
                 bInsidePart = false;
             }
+            
+            iLine++;
         }
 
         File objFileOut = createOutputFile(objFileIn, sSuffix);
@@ -126,11 +173,12 @@ public class StructureEditor {
      * persistent.sfs
      * ->
      * persistent_STEP01.sfs
+     * @throws ExceptionZZZ 
      */
     public static File createOutputFile(
             File objFileIn,
             String sSuffix
-    ) {
+    ) throws ExceptionZZZ {
 
         String sName = objFileIn.getName();
 
@@ -150,8 +198,12 @@ public class StructureEditor {
         String sNewName =
                 sNameOnly + sSuffix + sExtension;
 
+        File objFileDirectory = objFileIn.getParentFile();
+        String sDirectoryOutput = objFileDirectory.getParentFile().getAbsolutePath() + "\\output";
+        File objFileDirectoryOutput = new File(sDirectoryOutput); 
+        boolean bSuccess = FileEasyZZZ.makeDirectory(objFileDirectoryOutput);
         return new File(
-                objFileIn.getParentFile(),
+                objFileDirectoryOutput,
                 sNewName
         );
     }

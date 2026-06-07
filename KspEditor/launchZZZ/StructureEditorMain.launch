@@ -7,6 +7,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="use.tool.ksp.StructureEditorMain"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\input\bohrer FGL_ohneAnbaustelle.sfs&quot; 64 255"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\StructureEditorMain\input\bohrer FGL_ohneAnbaustelle.sfs&quot; 64 255"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Projekt_Tool_KspEditor"/>
 </launchConfiguration>

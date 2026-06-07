@@ -25,7 +25,7 @@ public class StructureAdderMain {
     		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\StructureAdderMain\input\VESSEL_Float_Raff_01experiment_ohneDieStruktur.sfs"
     		
     		//STRUCTURE
-    		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\StructureAdderMain\input\bohrer FGL_ohneAnbaustelle.sfs"
+    		//"C:\1fgl\repo\EclipseOxygen_V02\Projekt_Tool_KspEditor\KspEditor\exampleZZZ\StructureAdderMain\input\bohrer FGL_ohneAnbaustelle_STEP01.sfs"
     		
     		//iPegElementIndex (aus dem VESSEL per Tool "KLM" herausgesucht, hier muss der attN Wert gesetzt werden als Verbindung zur neuen Struktur)
     		//64
