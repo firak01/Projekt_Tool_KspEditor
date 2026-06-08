@@ -1,6 +1,9 @@
 package use.tool.ksp;
 
 import java.io.File;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.List;
 
 public class StructureEditorMain {
 	public static void main(String[] args) {
@@ -33,18 +36,33 @@ public class StructureEditorMain {
 		  String sIndexStrukturStart = args[2];
 		  int iIndexStrukturStart = Integer.valueOf(sIndexStrukturStart);
 
+		  List<String> listaLine = Files.readAllLines(
+	                objFileIn.toPath(),
+	                Charset.forName("UTF-8")
+	        );
+		  
           // Beispiel:
           // Erster PART bekommt parent = 999
           // Zweiter PART bekommt parent = 2000
           // Dritter PART bekommt parent = 2001
           // Vierter PART bekommt parent = 2002
-		  StructureEditor.updateParentValues(
-                  objFileIn,
+		  List<String> listaLineOut = StructureEditor.updateParentValues(
+				  listaLine,
                   iIndexAufhaenger,
-                  iIndexStrukturStart,
-                  "_STEP01"
+                  iIndexStrukturStart                  
           );
+		  
+		  //String sAttnNodeDefault = "bottom";
+		  //List<String> listaLineOut02 = StructureEditor.updateAttnValues(listaLineOut, iIndexAufhaenger, iIndexStrukturStart, sAttnNodeDefault);
 
+		  //Ausgabedatei
+		  String sSuffix = "_STEP01";
+		  File objFileOut = StructureEditor.createOutputFile(objFileIn, sSuffix);
+		  StructureEditor.writeLines(objFileOut, listaLineOut);
+
+	      System.out.println("Datei gespeichert:");
+	      System.out.println(objFileOut.getAbsolutePath());
+		  
           System.out.println("Fertig.");
 
       } catch (Exception e) {

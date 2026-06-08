@@ -25,26 +25,19 @@ public class StructureEditor {
     /**
      * Aktualisiert innerhalb aller PART{...}-Blöcke
      * die parent = ... Werte.
-     *
-     * @param objFileIn Eingabedatei
+     * @param listaLine
      * @param iParentFirst Wert für den ersten PART-Block
      * @param iParentStartOthers Startwert für weitere PART-Blöcke
-     * @param sSuffix Dateisuffix z.B. "_STEP01"
+     * @return
      * @throws Exception
      */
-    public static void updateParentValues(
-            File objFileIn,
+    public static List<String> updateParentValues(
+    		List<String> listaLine,
             int iParentFirst,
-            int iParentStartOthers,
-            String sSuffix
+            int iParentStartOthers            
     ) throws Exception {
 
-        List<String> listaLine = Files.readAllLines(
-                objFileIn.toPath(),
-                Charset.forName("UTF-8")
-        );
-
-        List<String> listaLineOut = new ArrayList<String>();
+        List<String> listasReturn = new ArrayList<String>();
 
         boolean bInsidePart = false;
         int iPartCount = 0;
@@ -82,10 +75,38 @@ public class StructureEditor {
                         iCurrentParent++;
                     }
 
-                    sLineNew = replaceParentLine(sLine, iNewValue);                                      
-                }
+                    sLineNew = replaceParentLine(sLine, iNewValue);
+                    iPartCount++;
+                }                
                 
-                TODOGOON20260607;//Es muss noch der attnNode überarbeitet werden.                
+            }
+
+            listasReturn.add(sLineNew);
+
+            // Ende eines PART-Blocks
+            // Achtung:
+            // sehr einfach gehalten.
+            // Funktioniert für normale PART-Strukturen.
+            if (bInsidePart && sLine.trim().equals("}")) {
+                bInsidePart = false;
+            }
+            
+            iLine++;
+        }
+
+      return listasReturn; 
+    }
+    
+    /**
+     * Aktualisiert innerhalb aller PART{...}-Blöcke
+     * die attN = ... Werte.
+     * @param listaLine
+     * @param iParent Wert des Parent, enspricht dem attN Wert
+     * @param sAttnNodeDefault
+     * @return
+     * @throws Exception
+     * 
+      //TODOGOON20260607;//Es muss noch der attnNode überarbeitet werden.                
                 //Zielwerte aus dem schon passend überarbeiten Beispiel:
                 //parent = 64
                 //attN = top, 256
@@ -123,10 +144,69 @@ public class StructureEditor {
                 //weitere PARTs
                 //und auch srfN = srfAttach, 455
                 
+     */
+    public static List<String> updateAttnValues(
+            List<String> listaLine,
+            int iParentFirst,
+            int iParentStartOthers,
+            String sAttnNodeDefault           
+    ) throws Exception {
+    	
+        List<String> listasReturn = new ArrayList<String>();
+
+        boolean bInsidePart = false;
+        int iPartCount = 0;
+                
+//        Pattern objPatternParent =
+//                Pattern.compile("^\\s*parent\\s*=\\s*-?\\d+\\s*$");
+        
+        Pattern objPatternAttn =
+                Pattern.compile(
+                        "^\\s*attN\\s*=\\s*"
+                        + Pattern.quote(sAttnNodeDefault)
+                        + "\\s*,\\s*-?\\d+\\s*$"
+                );
+
+        int iLine = 0;
+        int iPartIndex = -1;
+        for (String sLine : listaLine) {
+
+            String sLineNew = sLine;
+
+            // Beginn eines PART-Blocks
+            // so einfach ist nicht ausreichen. if (sLine.trim().equals("PART")) {
+            boolean bRealVesselPart = AbstractSfsParser.isRealVesselPartStart(listaLine, iLine);           
+
+            if(bRealVesselPart) {
+                bInsidePart = true;
+                iPartIndex++;
+            }
+
+            // attN = ... ersetzen
+            if (bInsidePart) {
+
+                Matcher objMatcher = objPatternAttn.matcher(sLine);
+
+                if (objMatcher.matches()) {
+
+                    int iNewValue;
+                    if(iPartIndex == 0) {
+                    	   // erstes PART
+                    	
+                    	sLineNew = replaceAttnLine(sLine, "top", iParentFirst);
+                    }
+                    else if(iPartIndex == 1) {
+                    	   // zweites PART und folgende
+                    	iNewValue = iParentStartOthers + iPartIndex;
+                    	sLineNew = replaceAttnLine(sLine, sAttnNodeDefault, iNewValue);
+                    }
+
+                                                          
+                }                               
                 iPartCount++;
             }
 
-            listaLineOut.add(sLineNew);
+            listasReturn.add(sLineNew);
 
             // Ende eines PART-Blocks
             // Achtung:
@@ -139,12 +219,7 @@ public class StructureEditor {
             iLine++;
         }
 
-        File objFileOut = createOutputFile(objFileIn, sSuffix);
-
-        writeLines(objFileOut, listaLineOut);
-
-        System.out.println("Datei gespeichert:");
-        System.out.println(objFileOut.getAbsolutePath());
+        return listasReturn;
     }
 
     /**
@@ -163,6 +238,76 @@ public class StructureEditor {
         return sLine.replaceAll(
                 "(^\\s*parent\\s*=\\s*)-?\\d+(\\s*$)",
                 "$1" + iNewParentValue + "$2"
+        );
+    }
+    
+//    /**
+//     * Ersetzt den attN-Wert einer Zeile.
+//     *
+//     * Beispiel:
+//     * parent = 5
+//     * ->
+//     * parent = 999
+//     */
+//    public static String replaceAttnLine(
+//            String sLine,
+//            String sAttnNode,
+//            int iNewParentValue
+//    ) {
+//
+//        //Beispiel für eine attN - Zeile:
+//    	//attN = bottom, 64
+//    	return "attN = bottom, 64"; //DUMMY AUSGABE
+//    }
+    
+    
+    /**
+     * Ersetzt den Wert einer attN-Zeile für den gewünschten Node.
+     *
+     * Beispiel:
+     * attN = bottom, 64
+     * ->
+     * attN = bottom, 453
+     */
+    public static String replaceAttnLine(
+            String sLine,
+            String sAttnNode,
+            int iNewValue
+    ) {
+
+        Pattern objPattern = Pattern.compile(
+                "^(\\s*attN\\s*=\\s*)(" +
+                Pattern.quote(sAttnNode) +
+                ")(\\s*,\\s*)-?\\d+(\\s*)$"
+        );
+
+        Matcher objMatcher = objPattern.matcher(sLine);
+
+        if(objMatcher.matches()) {
+
+            return objMatcher.group(1)
+                    + objMatcher.group(2)
+                    + objMatcher.group(3)
+                    + iNewValue
+                    + objMatcher.group(4);
+        }
+
+        return sLine;
+    }
+    
+    /**
+     * Aktualisiert den numerischen Wert einer attN-Zeile
+     * für einen bestimmten Node.
+     */
+    public static String updateAttnValue(
+            String sLine,
+            String sAttnNode,
+            int iNewValue
+    ) {
+        return replaceAttnLine(
+                sLine,
+                sAttnNode,
+                iNewValue
         );
     }
 
