@@ -28,6 +28,7 @@ public class VesselEditor extends AbstractParserUsingTool{
     		  SfsVesselParser objVesselParser = (SfsVesselParser) this.getParser();
     		  File fileVessel = objVesselParser.getFile();
     		  
+    		  TODOGOON20260616;
     		  StructureAdder objStructureAdder = new StructureAdder(objVesselParser);
     		  boolean bSuccess = objStructureAdder.addStructure(fileVessel, fileStructure, iPegElementIndex, objEnumPegPartNode);
  			 
