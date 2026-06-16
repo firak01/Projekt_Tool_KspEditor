@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +19,7 @@ import use.tool.ksp.util.AbstractSfsParser;
  *
  * Java 1.7 kompatibel
  */
-public class StructureEditor {
+public class StructureEditor_alt {
 
    
     /**
@@ -33,7 +31,7 @@ public class StructureEditor {
      * @return
      * @throws Exception
      */
-    public static List<String> updateParentValues_ALT_OK(
+    public static List<String> updateParentValues(
     		List<String> listaLine,
             int iParentFirst,
             int iParentStartOthers            
@@ -77,7 +75,7 @@ public class StructureEditor {
                         iCurrentParent++;
                     }
 
-                    sLineNew = replaceParentLine_ALT_OK(sLine, iNewValue);
+                    sLineNew = replaceParentLine(sLine, iNewValue);
                     iPartCount++;
                 }                
                 
@@ -97,148 +95,6 @@ public class StructureEditor {
         }
 
       return listasReturn; 
-    }
-    
-    //#################################
-    //### Version: Ersetze alles durch eine MAP der PIDs
-    public static Map<Integer,Integer> createPidMapping(
-            List<String> listaLine,
-            int iOldRootPid,
-            int iNewRootPid,
-            int iFirstNewDynamicPid
-    ) throws Exception {
-
-        Map<Integer,Integer> hmReturn =
-                new LinkedHashMap<Integer,Integer>();
-
-        // Root-Verbindung
-        hmReturn.put(
-                Integer.valueOf(iOldRootPid),
-                Integer.valueOf(iNewRootPid)
-        );
-
-        int iNextNewPid = iFirstNewDynamicPid;
-
-        int iLine = 0;
-
-        for(String sLine : listaLine) {
-
-            boolean bPartStart =
-                    AbstractSfsParser.isRealVesselPartStart(
-                            listaLine,
-                            iLine
-                    );
-
-            if(bPartStart) {
-
-                int iOldPid = iOldRootPid + 1 + (iNextNewPid - iFirstNewDynamicPid);
-
-                hmReturn.put(
-                        Integer.valueOf(iOldPid),
-                        Integer.valueOf(iNextNewPid)
-                );
-
-                iNextNewPid++;
-            }
-
-            iLine++;
-        }
-
-        return hmReturn;
-    }
-    
-    
-    //#################################
-    public static List<String> updatePartReferences(
-            List<String> listaLine,
-            Map<Integer,Integer> hmPidMapping
-    ) {
-
-        List<String> listasReturn = new ArrayList<String>();
-
-        Pattern objPatternParent =
-                Pattern.compile(
-                        "^(\\s*parent\\s*=\\s*)(-?\\d+)(\\s*)$"
-                );
-
-        Pattern objPatternAttn =
-                Pattern.compile(
-                        "^(\\s*attN\\s*=\\s*[^,]+\\s*,\\s*)(-?\\d+)(\\s*)$"
-                );
-
-        Pattern objPatternSrfn =
-                Pattern.compile(
-                        "^(\\s*srfN\\s*=\\s*[^,]+\\s*,\\s*)(-?\\d+)(\\s*)$"
-                );
-
-        for(String sLine : listaLine) {
-
-            String sLineNew = sLine;
-
-            // parent
-            Matcher objMatcherParent =
-                    objPatternParent.matcher(sLine);
-
-           
-            // attN
-            Matcher objMatcherAttn =
-                    objPatternAttn.matcher(sLineNew);
-
-          
-            // srfN
-            Matcher objMatcherSrfn =
-                    objPatternSrfn.matcher(sLineNew);
-
-            sLineNew = replaceMappedValue_(
-                    sLineNew,
-                    objPatternParent,
-                    hmPidMapping);
-
-            sLineNew = replaceMappedValue_(
-                    sLineNew,
-                    objPatternAttn,
-                    hmPidMapping);
-
-            sLineNew = replaceMappedValue_(
-                    sLineNew,
-                    objPatternSrfn,
-                    hmPidMapping);
-
-            listasReturn.add(sLineNew);
-        }
-
-        return listasReturn;
-    }
-
-    
-    private static String replaceMappedValue_(
-            String sLine,
-            Pattern objPattern,
-            Map<Integer,Integer> hmPidMapping
-    ) {
-        Matcher objMatcher = objPattern.matcher(sLine);
-
-        if(!objMatcher.matches()) {
-            return sLine;
-        }
-
-        int iOldValue =
-                Integer.parseInt(
-                        objMatcher.group(2)
-                );
-
-        Integer intNewValue =
-                hmPidMapping.get(
-                        Integer.valueOf(iOldValue)
-                );
-
-        if(intNewValue == null) {
-            return sLine;
-        }
-
-        return objMatcher.group(1)
-                + intNewValue.intValue()
-                + objMatcher.group(3);
     }
     
     /**
@@ -289,7 +145,7 @@ public class StructureEditor {
                 //und auch srfN = srfAttach, 455
                 
      */
-    public static List<String> updateAttnValues_ALT(
+    public static List<String> updateAttnValues(
             List<String> listaLine,
             int iParentFirst,
             int iParentStartOthers,
@@ -337,12 +193,12 @@ public class StructureEditor {
                     if(iPartIndex == 0) {
                     	   // erstes PART
                     	
-                    	sLineNew = replaceAttnLine_ALT(sLine, "top", iParentFirst);
+                    	sLineNew = replaceAttnLine(sLine, "top", iParentFirst);
                     }
                     else if(iPartIndex == 1) {
                     	   // zweites PART und folgende
                     	iNewValue = iParentStartOthers + iPartIndex;
-                    	sLineNew = replaceAttnLine_ALT(sLine, sAttnNodeDefault, iNewValue);
+                    	sLineNew = replaceAttnLine(sLine, sAttnNodeDefault, iNewValue);
                     }
 
                                                           
@@ -374,7 +230,7 @@ public class StructureEditor {
      * ->
      * parent = 999
      */
-    public static String replaceParentLine_ALT_OK(
+    public static String replaceParentLine(
             String sLine,
             int iNewParentValue
     ) {
@@ -385,19 +241,35 @@ public class StructureEditor {
         );
     }
     
+//    /**
+//     * Ersetzt den attN-Wert einer Zeile.
+//     *
+//     * Beispiel:
+//     * parent = 5
+//     * ->
+//     * parent = 999
+//     */
+//    public static String replaceAttnLine(
+//            String sLine,
+//            String sAttnNode,
+//            int iNewParentValue
+//    ) {
+//
+//        //Beispiel für eine attN - Zeile:
+//    	//attN = bottom, 64
+//    	return "attN = bottom, 64"; //DUMMY AUSGABE
+//    }
+    
     
     /**
      * Ersetzt den Wert einer attN-Zeile für den gewünschten Node.
-     * ABER: Strategie letztendlich gescheitert, da man nicht genau den sAttnNode für jedes "Nachbar"-PART bestimmen kann.
-     * 
-     * BESSER: Strategie die PIDs zu mappen: "Dynamischer Index-Wert alte Struktur" zu "Dynamischer Index-Wert neue Struktur" 
      *
      * Beispiel:
      * attN = bottom, 64
      * ->
      * attN = bottom, 453
      */
-    public static String replaceAttnLine_ALT(
+    public static String replaceAttnLine(
             String sLine,
             String sAttnNode,
             int iNewValue
@@ -426,17 +298,13 @@ public class StructureEditor {
     /**
      * Aktualisiert den numerischen Wert einer attN-Zeile
      * für einen bestimmten Node.
-	 *
-     * ABER: Strategie letztendlich gescheitert, da man nicht genau den sAttnNode für jedes "Nachbar"-PART bestimmen kann.
-     * 
-     * BESSER: Strategie die PIDs zu mappen: "Dynamischer Index-Wert alte Struktur" zu "Dynamischer Index-Wert neue Struktur" 
      */
-    public static String updateAttnValue_ALT(
+    public static String updateAttnValue(
             String sLine,
             String sAttnNode,
             int iNewValue
     ) {
-        return replaceAttnLine_ALT(
+        return replaceAttnLine(
                 sLine,
                 sAttnNode,
                 iNewValue

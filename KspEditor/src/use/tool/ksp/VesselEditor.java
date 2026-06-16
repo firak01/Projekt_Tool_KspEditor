@@ -14,13 +14,23 @@ public class VesselEditor extends AbstractParserUsingTool{
         super(parser);
     }
     
+    /**Methode reicht nur die Daten des Vessel 
+     * und die für das "Anhängen" der Struktur notwendigen Daten 
+     * an den "StructurAdder" weiter.
+     * @param fileStructure
+     * @return
+     * @throws ExceptionZZZ
+     */
     public boolean addStructure(File fileStructure) throws ExceptionZZZ{
     	boolean bReturn = false;
     	main:{
 
     		  SfsVesselParser objVesselParser = (SfsVesselParser) this.getParser();
+    		  File fileVessel = objVesselParser.getFile();
     		  
     		  StructureAdder objStructureAdder = new StructureAdder(objVesselParser);
+    		  boolean bSuccess = objStructureAdder.addStructure(fileVessel, fileStructure, iPegElementIndex, objEnumPegPartNode);
+ 			 
     		 
 			  
     	}//end main:

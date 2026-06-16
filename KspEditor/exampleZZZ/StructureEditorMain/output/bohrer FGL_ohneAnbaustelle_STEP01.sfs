@@ -20,8 +20,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = top, 455
-				attN = bottom, 453
+				attN = top, 256
+				attN = bottom, 64
 				mass = 0.100000001
 				shielded = False
 				temp = 257.44530418960886
@@ -236,7 +236,7 @@
 				attm = 0
 				srfN = srfAttach, -1
 				attN = bottom, -1
-				attN = top, 454
+				attN = top, 255
 				mass = 0.319999993
 				shielded = False
 				temp = 257.43526986387269
@@ -353,7 +353,7 @@
 				sepI = 1
 				sidx = -1
 				attm = 1
-				srfN = srfAttach, 455
+				srfN = srfAttach, 256
 				attN = bottom, -1
 				attN = top, -1
 				mass = 0.319999993
@@ -472,7 +472,7 @@
 				sepI = 1
 				sidx = -1
 				attm = 1
-				srfN = srfAttach, 456
+				srfN = srfAttach, 257
 				attN = bottom, -1
 				attN = top, -1
 				mass = 0.319999993
@@ -591,9 +591,9 @@
 				sepI = 1
 				sidx = -1
 				attm = 1
-				srfN = srfAttach, 457
+				srfN = srfAttach, 258
 				attN = bottom, -1
-				attN = top, 459
+				attN = top, 260
 				mass = 0.319999993
 				shielded = False
 				temp = 257.38755048846417
@@ -711,7 +711,7 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = top, 458
+				attN = top, 259
 				attN = bottom, -1
 				mass = 0.150000006
 				shielded = False
@@ -925,9 +925,9 @@
 				sepI = 1
 				sidx = -1
 				attm = 1
-				srfN = srfAttach, 459
+				srfN = srfAttach, 260
 				attN = bottom, -1
-				attN = top, 461
+				attN = top, 262
 				mass = 0.319999993
 				shielded = False
 				temp = 257.38716174492396
@@ -1045,8 +1045,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = bottom, 460
-				attN = top, 462
+				attN = bottom, 261
+				attN = top, 263
 				mass = 0.319999993
 				shielded = False
 				temp = 257.38825915654701
@@ -1164,8 +1164,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = bottom, 461
-				attN = top, 463
+				attN = bottom, 262
+				attN = top, 264
 				mass = 0.319999993
 				shielded = False
 				temp = 257.39193789373985
@@ -1283,8 +1283,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = bottom, 464
-				attN = top, 462
+				attN = bottom, 265
+				attN = top, 263
 				mass = 0.319999993
 				shielded = False
 				temp = 257.39772744646137
@@ -1403,7 +1403,7 @@
 				attm = 0
 				srfN = srfAttach, -1
 				attN = top, -1
-				attN = bottom, 463
+				attN = bottom, 264
 				mass = 0.150000006
 				shielded = False
 				temp = 257.38785653702774
@@ -1616,9 +1616,9 @@
 				sepI = 1
 				sidx = -1
 				attm = 1
-				srfN = srfAttach, 464
+				srfN = srfAttach, 265
 				attN = bottom, -1
-				attN = top, 466
+				attN = top, 267
 				mass = 0.319999993
 				shielded = False
 				temp = 257.42486106236453
@@ -1736,8 +1736,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = bottom, 467
-				attN = top, 465
+				attN = bottom, 268
+				attN = top, 266
 				mass = 0.319999993
 				shielded = False
 				temp = 257.44078392392572
@@ -1855,8 +1855,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = bottom, 468
-				attN = top, 466
+				attN = bottom, 269
+				attN = top, 267
 				mass = 0.319999993
 				shielded = False
 				temp = 257.45545356308185
@@ -1974,8 +1974,8 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = bottom, 469
-				attN = top, 467
+				attN = bottom, 270
+				attN = top, 268
 				mass = 0.319999993
 				shielded = False
 				temp = 257.46618345231559
@@ -2093,7 +2093,7 @@
 				sidx = -1
 				attm = 0
 				srfN = srfAttach, -1
-				attN = top, 468
+				attN = top, 269
 				attN = bottom, -1
 				mass = 0.375
 				shielded = False
@@ -2211,7 +2211,7 @@
 				sepI = 1
 				sidx = -1
 				attm = 1
-				srfN = srfAttach, 469
+				srfN = srfAttach, 270
 				mass = 1
 				shielded = False
 				temp = 257.41311859518009

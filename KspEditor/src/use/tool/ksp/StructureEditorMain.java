@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Map;
 
 public class StructureEditorMain {
 	public static void main(String[] args) {
@@ -30,10 +31,13 @@ public class StructureEditorMain {
 		  String sFilePath = args[0]; //D:\\KSP\\persistent_partstruktur.sfs
 		  File objFileIn = new File(sFilePath);
 		  
-		  String sIndexAufhaenger=args[1];
-		  int iIndexAufhaenger = Integer.valueOf(sIndexAufhaenger);
+		  String sIndexAufhaengerOld = args[1];
+		  int iIndexAufhaengerOld = Integer.valueOf(sIndexAufhaengerOld);
+		  		  
+		  String sIndexAufhaengerNew = args[2];
+		  int iIndexAufhaengerNew = Integer.valueOf(sIndexAufhaengerNew);
 		  
-		  String sIndexStrukturStart = args[2];
+		  String sIndexStrukturStart = args[3];
 		  int iIndexStrukturStart = Integer.valueOf(sIndexStrukturStart);
 
 		  List<String> listaLine = Files.readAllLines(
@@ -41,20 +45,24 @@ public class StructureEditorMain {
 	                Charset.forName("UTF-8")
 	        );
 		  
+		  //Alte Version, ohne den Ansatz die PIDs über eine Map zu ersetzen
           // Beispiel:
           // Erster PART bekommt parent = 999
           // Zweiter PART bekommt parent = 2000
           // Dritter PART bekommt parent = 2001
           // Vierter PART bekommt parent = 2002
-		  List<String> listaLineOut = StructureEditor.updateParentValues(
-				  listaLine,
-                  iIndexAufhaenger,
-                  iIndexStrukturStart                  
-          );
+//		  List<String> listaLineOut = StructureEditor.updateParentValues(
+//				  listaLine,
+//                  iIndexAufhaenger,
+//                  iIndexStrukturStart                  
+//          );
 		  
-		  //String sAttnNodeDefault = "bottom";
-		  //List<String> listaLineOut02 = StructureEditor.updateAttnValues(listaLineOut, iIndexAufhaenger, iIndexStrukturStart, sAttnNodeDefault);
-
+		  //Neue Version, mit dem Ansatz die PIDs über eine Map zu ersetzen
+		  //alte ID des Root, neue ID des Root, Neue ID des ersten Teils der Struktur
+		  Map<Integer,Integer> mapPidOldNew = StructureEditor.createPidMapping(listaLine, iIndexAufhaengerOld, iIndexAufhaengerNew, iIndexStrukturStart);
+		  
+		  List<String> listaLineOut = StructureEditor.updatePartReferences(listaLine, mapPidOldNew);
+		 
 		  //Ausgabedatei
 		  String sSuffix = "_STEP01";
 		  File objFileOut = StructureEditor.createOutputFile(objFileIn, sSuffix);

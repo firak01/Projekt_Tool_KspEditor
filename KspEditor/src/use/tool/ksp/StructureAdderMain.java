@@ -47,7 +47,7 @@ public class StructureAdderMain {
 	            System.out.println("  java VesselEditorMainKSP <pfad-zur-Datei mit dem VESSEL .sfs>");
 	            System.out.println("  java VesselEditorMainKSP <pfad-zur-Datei mit der Struktur .sfs>");
 	            System.out.println("  java VesselEditorMainKSP <Indexzahl des Aufhängerelements als Verbindungstelle zur neuen Struktur. Hat z.B. name = structuralMiniNode>");
-	            System.out.println("  java VesselEditorMainKSP <Name des Verbindungstellen'ports'. Gültig sind für Aufhängerelement mit name = structuralMiniNode: bottom, front, left, right, back, top>");
+	            System.out.println("  java VesselEditorMainKSP <Name des Verbindungstellen'ports' des Aufhängerelements. Gültig sind für Aufhängerelement mit name = structuralMiniNode: bottom, front, left, right, back, top>");
 	            return;
 	        }else {
 	        	System.out.println("Start, verwende Argumente:");        	
