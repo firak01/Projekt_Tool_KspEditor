@@ -7,7 +7,7 @@ import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.IConstantZZZ;
 import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.file.FileEasyZZZ;
-import basic.zBasic.util.file.FileTextUtilZZZ;
+import basic.zBasic.util.file.txt.FileTextUtilZZZ;
 
 public class AbstractSfsParser implements IConstantZZZ, ISfsParser{
 	protected File objFile = null;
