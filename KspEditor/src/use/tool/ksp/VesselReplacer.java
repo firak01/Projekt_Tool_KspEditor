@@ -48,7 +48,7 @@ public class VesselReplacer extends AbstractParserUsingTool {
     public boolean replaceVessel(SfsGameParser objParserGame, File fileReplacementVessel) throws ExceptionZZZ {
     	boolean bReturn = false;
     	main:{
-//    		try {
+    		try {
     			if(objParserGame==null) {
     				ExceptionZZZ ez = new ExceptionZZZ("GameParser - Object", iERROR_PARAMETER_MISSING, this, ReflectCodeZZZ.getMethodCurrentName());
     				throw ez;
@@ -110,11 +110,12 @@ public class VesselReplacer extends AbstractParserUsingTool {
 					
 					FileTextWriterZZZ objFileTextWriter = new FileTextWriterZZZ(sFilePathTotalNew);
 					bSuccess = objFileTextWriter.writeLines(listLinesNew);
+					objFileTextWriter.close();
 				}
-//    		}catch(IOException ioe) {
-//    			ExceptionZZZ ez = new ExceptionZZZ(ioe);
-//    			throw ez;
-//    		}
+    		}catch(IOException ioe) {
+    			ExceptionZZZ ez = new ExceptionZZZ(ioe);
+    			throw ez;
+    		}
     	}//end main:
     	return bReturn;
     }
