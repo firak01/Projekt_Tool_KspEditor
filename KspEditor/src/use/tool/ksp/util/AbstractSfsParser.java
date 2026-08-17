@@ -7,7 +7,7 @@ import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.IConstantZZZ;
 import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.file.FileEasyZZZ;
-import basic.zBasic.util.file.FileTextUtilZZZ;
+
 
 public class AbstractSfsParser implements IConstantZZZ, ISfsParser{
 	protected File objFile = null;
@@ -26,7 +26,7 @@ public class AbstractSfsParser implements IConstantZZZ, ISfsParser{
 	public void setFile(File objFile) throws ExceptionZZZ {
 		if(objFile!=null) {
 	    	if(!FileEasyZZZ.isFileExisting(objFile)) {
-				ExceptionZZZ ez = new ExceptionZZZ( "File-Object does not exist or is an directory: '"+objFile.getAbsolutePath() + "'", iERROR_PROPERTY_MISSING, FileTextUtilZZZ.class, ReflectCodeZZZ.getMethodCurrentName()); 
+				ExceptionZZZ ez = new ExceptionZZZ( "File-Object does not exist or is an directory: '"+objFile.getAbsolutePath() + "'", iERROR_PROPERTY_MISSING, AbstractSfsParser.class, ReflectCodeZZZ.getMethodCurrentName()); 
 				throw ez;		 
 			}
 		}

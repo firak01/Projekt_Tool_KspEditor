@@ -12,7 +12,6 @@ import basic.zBasic.ExceptionZZZ;
 import basic.zBasic.IConstantZZZ;
 import basic.zBasic.ReflectCodeZZZ;
 import basic.zBasic.util.file.FileEasyZZZ;
-import basic.zBasic.util.file.FileTextUtilZZZ;
 
 public final class VesselValidator implements IConstantZZZ{
 	private static final Pattern VALID_KEY_VALUE =
@@ -29,7 +28,7 @@ public final class VesselValidator implements IConstantZZZ{
     public static void validateVesselFile(File objFile) throws ExceptionZZZ {
     	
     	if(!FileEasyZZZ.isFileExisting(objFile)) {
-			ExceptionZZZ ez = new ExceptionZZZ( "File-Object does not exist or is an directory: '"+objFile.getAbsolutePath() + "'", iERROR_PROPERTY_MISSING, FileTextUtilZZZ.class, ReflectCodeZZZ.getMethodCurrentName()); 
+			ExceptionZZZ ez = new ExceptionZZZ( "File-Object does not exist or is an directory: '"+objFile.getAbsolutePath() + "'", iERROR_PROPERTY_MISSING, VesselValidator.class, ReflectCodeZZZ.getMethodCurrentName()); 
 			throw ez;		 
 		}
     	
